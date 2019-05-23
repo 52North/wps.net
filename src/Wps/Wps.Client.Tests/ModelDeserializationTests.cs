@@ -47,5 +47,84 @@ namespace Wps.Client.Tests
             }
         }
 
+        [Fact]
+        public void DeserializeLiteralDataDomain_ValidXmlGiven_WithAllowedValues_ShouldPass()
+        {
+            var serialize = new XmlSerializer(typeof(LiteralDataDomain));
+            var xml = @"<wps:LiteralDataDomain default=""true"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:wps=""http://www.opengis.net/wps/2.0"">
+                        <ows:AllowedValues>
+                            <ows:Value>uncorrected</ows:Value>
+                            <ows:Value>dos1</ows:Value>
+                            <ows:Value>dos2</ows:Value>
+                            <ows:Value>dos2b</ows:Value>
+                            <ows:Value>dos3</ows:Value>
+                            <ows:Value>dos4</ows:Value>
+                        </ows:AllowedValues>
+                        <ows:DataType ows:reference=""string""/>
+                        <ows:DefaultValue>uncorrected</ows:DefaultValue>
+                        <ows:ValuesUnit>Meter</ows:ValuesUnit>
+                    </wps:LiteralDataDomain>";
+
+            using (var reader = new StringReader(xml))
+            {
+                var domain = serialize.Deserialize(reader) as LiteralDataDomain;
+                domain.Should().NotBeNull();
+                domain?.IsDefault.Should().BeTrue();
+                domain?.DefaultValue.Should().Be("uncorrected");
+                domain?.PossibleLiteralValues.GetType().Should().Be(typeof(AllowedValues));
+                domain?.DataType?.Reference.Should().Be("string");
+                if(domain?.PossibleLiteralValues is AllowedValues values)
+                {
+                    values.Values.Length.Should().Be(6);
+                }
+            }
+        }
+
+        [Fact]
+        public void DeserializeLiteralDataDomain_ValidXmlGiven_WithAnyValue_ShouldPass()
+        {
+            var serialize = new XmlSerializer(typeof(LiteralDataDomain));
+            var xml = @"<wps:LiteralDataDomain default=""true"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:wps=""http://www.opengis.net/wps/2.0"">
+                        <ows:AnyValue></ows:AnyValue>
+                        <ows:DataType ows:reference=""string""/>
+                        <ows:DefaultValue>uncorrected</ows:DefaultValue>
+                        <ows:ValuesUnit>Meter</ows:ValuesUnit>
+                    </wps:LiteralDataDomain>";
+
+            using (var reader = new StringReader(xml))
+            {
+                var domain = serialize.Deserialize(reader) as LiteralDataDomain;
+                domain.Should().NotBeNull();
+                domain?.IsDefault.Should().BeTrue();
+                domain?.DefaultValue.Should().Be("uncorrected");
+                domain?.PossibleLiteralValues.GetType().Should().Be(typeof(AnyValue));
+                domain?.DataType?.Reference.Should().Be("string");                         
+
+            }
+        }
+
+        [Fact]
+        public void DeserializeLiteralDataDomain_ValidXmlGiven_WithValueReference_ShouldPass()
+        {
+            var serialize = new XmlSerializer(typeof(LiteralDataDomain));
+            var xml = @"<wps:LiteralDataDomain default=""true"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:wps=""http://www.opengis.net/wps/2.0"">
+                        <ows:ValueReference></ows:ValueReference>
+                        <ows:DataType ows:reference=""string""/>
+                        <ows:DefaultValue>uncorrected</ows:DefaultValue>
+                        <ows:ValuesUnit>Meter</ows:ValuesUnit>
+                    </wps:LiteralDataDomain>";
+
+            using (var reader = new StringReader(xml))
+            {
+                var domain = serialize.Deserialize(reader) as LiteralDataDomain;
+                domain.Should().NotBeNull();
+                domain?.IsDefault.Should().BeTrue();
+                domain?.DefaultValue.Should().Be("uncorrected");
+                domain?.PossibleLiteralValues.GetType().Should().Be(typeof(ValueReference));
+                domain?.DataType?.Reference.Should().Be("string");
+
+            }
+        }
+
     }
 }
