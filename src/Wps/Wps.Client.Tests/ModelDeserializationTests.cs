@@ -2,6 +2,7 @@
 using System.IO;
 using System.Xml.Serialization;
 using Wps.Client.Models;
+using Wps.Client.Models.Data;
 using Xunit;
 
 namespace Wps.Client.Tests
@@ -28,6 +29,21 @@ namespace Wps.Client.Tests
                     format.MaximumMegabytes.Should().Be(2048);
                     format.IsDefault.Should().BeTrue();
                 }
+            }
+        }
+
+        [Fact]
+        public void DeserializeDataType_ValidXmlGiven_ShouldPass()
+        {
+            var serialize = new XmlSerializer(typeof(DataType));
+            var xml = @"<ows:DataType xmlns:ows=""http://www.opengis.net/ows/2.0"" ows:reference=""string""/>";
+
+            using (var reader = new StringReader(xml))
+            {
+                var dataType = serialize.Deserialize(reader) as DataType;
+                dataType.Should().NotBeNull();
+                dataType?.Reference.Should().Be("string");
+                dataType?.GetReferenceType().Should().Be(typeof(string));
             }
         }
 
