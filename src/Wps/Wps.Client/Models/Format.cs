@@ -1,9 +1,12 @@
-﻿using System.Text;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
+using Wps.Client.Utils;
 
 namespace Wps.Client.Models
 {
-    [XmlRoot("Format")]
+    /// <summary>
+    /// Format of the data.
+    /// </summary>
+    [XmlRoot("Format", Namespace = ModelNamespaces.Wps)]
     public class Format
     {
 
@@ -13,7 +16,7 @@ namespace Wps.Client.Models
         /// <remarks>
         /// It is mandatory to precise the media type.
         /// </remarks>
-        [XmlAttribute("mimetype")]
+        [XmlAttribute("mimeType")]
         public string MimeType { get; set; }
 
         /// <summary>
