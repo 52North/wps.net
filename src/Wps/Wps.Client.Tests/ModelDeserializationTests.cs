@@ -190,5 +190,58 @@ namespace Wps.Client.Tests
             }
         }
 
+        [Fact]
+        public void DeserializeInput_ValidXmlGiven_WithNoNesting_ShouldPass()
+        {
+            var serialize = new XmlSerializer(typeof(Input));
+            var xml = @"<wps:Input minOccurs=""0"" maxOccurs=""1"" xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                            <ows:Title>Default: center only</ows:Title>
+                            <ows:Identifier>-n</ows:Identifier>
+                            <ows:Abstract>Test abstract</ows:Abstract>
+                            <wps:LiteralData
+                                xmlns:ns=""http://www.opengis.net/wps/2.0"">
+                                <ns:Format default=""true"" mimeType=""text/plain""/>
+                                <ns:Format mimeType=""text/xml""/>
+                                <LiteralDataDomain>
+                                    <ows:AllowedValues>
+                                        <ows:Value>true</ows:Value>
+                                        <ows:Value>false</ows:Value>
+                                    </ows:AllowedValues>
+                                    <ows:DataType ows:reference=""boolean""/>
+                                    <ows:DefaultValue>false</ows:DefaultValue>
+                                </LiteralDataDomain>
+                            </wps:LiteralData>
+                        </wps:Input>";
+
+            using (var reader = new StringReader(xml))
+            {
+                var input = serialize.Deserialize(reader) as Input;
+                input?.Data.GetType().Should().Be(typeof(LiteralData));
+                input?.MinimumOccurrences.Should().Be(0);
+                input?.MaximumOccurrences.Should().Be(1);
+                input?.Title.Should().Be("Default: center only");
+                input?.Abstract.Should().Be("Test abstract");
+                input?.Identifier.Should().Be("-n");
+                input?.Inputs.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public void DeserializeInput_ValidXmlGiven_WithOneLevelNesting_ShouldPass()
+        {
+            var serialize = new XmlSerializer(typeof(Input));
+            var xml = @"<wps:Input minOccurs=""0"" maxOccurs=""1"" xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                            <wps:Input>
+                            </wps:Input>
+                        </wps:Input>";
+
+            using (var reader = new StringReader(xml))
+            {
+                var input = serialize.Deserialize(reader) as Input;
+                input?.Inputs.Length.Should().Be(1);
+                input?.Inputs[0].GetType().Should().Be(typeof(Input));
+            }
+        }
+
     }
 }
