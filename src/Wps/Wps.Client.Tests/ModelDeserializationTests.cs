@@ -73,7 +73,7 @@ namespace Wps.Client.Tests
                 domain?.DefaultValue.Should().Be("uncorrected");
                 domain?.PossibleLiteralValues.GetType().Should().Be(typeof(AllowedValues));
                 domain?.DataType?.Reference.Should().Be("string");
-                if(domain?.PossibleLiteralValues is AllowedValues values)
+                if (domain?.PossibleLiteralValues is AllowedValues values)
                 {
                     values.Values.Length.Should().Be(6);
                 }
@@ -98,7 +98,7 @@ namespace Wps.Client.Tests
                 domain?.IsDefault.Should().BeTrue();
                 domain?.DefaultValue.Should().Be("uncorrected");
                 domain?.PossibleLiteralValues.GetType().Should().Be(typeof(AnyValue));
-                domain?.DataType?.Reference.Should().Be("string");                         
+                domain?.DataType?.Reference.Should().Be("string");
 
             }
         }
@@ -147,5 +147,48 @@ namespace Wps.Client.Tests
                 data?.LiteralDataDomains.Length.Should().Be(1);
             }
         }
+
+        [Fact]
+        public void DeserializeOutput_ValidXmlGiven_WithNoNesting_ShouldPass()
+        {
+            var serialize = new XmlSerializer(typeof(Output));
+            var xml = @"<wps:Output xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                            <ows:Title>Module output on stdout</ows:Title>
+                            <ows:Abstract>The output of the module written to stdout</ows:Abstract>
+                            <ows:Identifier>stdout</ows:Identifier>
+                            <wps:ComplexData xmlns:ns=""http://www.opengis.net/wps/2.0"">
+                                <ns:Format default=""true"" mimeType=""text/plain""/>
+                                <ns:Format mimeType=""text/plain"" encoding=""base64""/>
+                            </wps:ComplexData>
+                        </wps:Output>";
+
+            using (var reader = new StringReader(xml))
+            {
+                var output = serialize.Deserialize(reader) as Output;
+                output?.Data.GetType().Should().Be(typeof(ComplexData));
+                output?.Title.Should().Be("Module output on stdout");
+                output?.Abstract.Should().Be("The output of the module written to stdout");
+                output?.Identifier.Should().Be("stdout");
+                output?.Outputs.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public void DeserializeOutput_ValidXmlGiven_WithOneLevelNesting_ShouldPass()
+        {
+            var serialize = new XmlSerializer(typeof(Output));
+            var xml = @"<wps:Output xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                            <wps:Output>
+                            </wps:Output>
+                        </wps:Output>";
+
+            using (var reader = new StringReader(xml))
+            {
+                var output = serialize.Deserialize(reader) as Output;
+                output?.Outputs.Length.Should().Be(1);
+                output?.Outputs[0].GetType().Should().Be(typeof(Output));
+            }
+        }
+
     }
 }
