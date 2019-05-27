@@ -243,5 +243,36 @@ namespace Wps.Client.Tests
             }
         }
 
+        [Fact]
+        public void DeserializeProcess_ValidXmlGiven_ShouldPass()
+        {
+            var serializer = new XmlSerializer(typeof(Process));
+            var xml = @"<wps:Process xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                            <ows:Title>Targets an imagery group to a GRASS location and mapset.</ows:Title>
+                            <ows:Abstract>http://grass.osgeo.org/grass70/manuals/html70_user/i.target.html</ows:Abstract>
+                            <ows:Identifier>i.target</ows:Identifier>
+                            <wps:Input minOccurs=""1"" maxOccurs=""1"">
+                            </wps:Input>
+                            <wps:Input minOccurs=""0"" maxOccurs=""1"">
+                            </wps:Input>
+                            <wps:Input minOccurs=""0"" maxOccurs=""1"">
+                            </wps:Input>
+                            <wps:Input minOccurs=""0"" maxOccurs=""1"">
+                            </wps:Input>
+                            <wps:Output>
+                            </wps:Output>
+                        </wps:Process>";
+
+            using(var reader = new StringReader(xml))
+            {
+                var process = serializer.Deserialize(reader) as Process;
+                process?.Inputs.Length.Should().Be(4);
+                process?.Outputs.Length.Should().Be(1);
+                process?.Title.Should().Be("Targets an imagery group to a GRASS location and mapset.");
+                process?.Abstract.Should().Be("http://grass.osgeo.org/grass70/manuals/html70_user/i.target.html");
+                process?.Identifier.Should().Be("i.target");
+            }
+        }
+
     }
 }
