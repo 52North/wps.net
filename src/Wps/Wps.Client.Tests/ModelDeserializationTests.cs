@@ -73,6 +73,7 @@ namespace Wps.Client.Tests
                 domain?.DefaultValue.Should().Be("uncorrected");
                 domain?.PossibleLiteralValues.GetType().Should().Be(typeof(AllowedValues));
                 domain?.DataType?.Reference.Should().Be("string");
+                domain?.UnitOfMeasure.Should().Be("Meter");
                 if (domain?.PossibleLiteralValues is AllowedValues values)
                 {
                     values.Values.Length.Should().Be(6);
@@ -99,7 +100,7 @@ namespace Wps.Client.Tests
                 domain?.DefaultValue.Should().Be("uncorrected");
                 domain?.PossibleLiteralValues.GetType().Should().Be(typeof(AnyValue));
                 domain?.DataType?.Reference.Should().Be("string");
-
+                domain?.UnitOfMeasure.Should().Be("Meter");
             }
         }
 
