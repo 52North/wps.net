@@ -126,5 +126,26 @@ namespace Wps.Client.Tests
             }
         }
 
+        [Fact]
+        public void DeserializeLiteralData_ValidXmlGiven_WithLiteralDataDomain_ShouldPass()
+        {
+            var serialize = new XmlSerializer(typeof(LiteralData));
+            var xml = @"<wps:LiteralData xmlns:ns=""http://www.opengis.net/wps/2.0"" xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                            <ns:Format default=""true"" mimeType=""text/plain""/>
+                            <ns:Format mimeType=""text/xml""/>
+                            <LiteralDataDomain>
+                                <ows:AnyValue/>
+                                <ows:DataType ows:reference=""float""/>
+                            </LiteralDataDomain>
+                        </wps:LiteralData>";
+
+            using (var reader = new StringReader(xml))
+            {
+                var data = serialize.Deserialize(reader) as LiteralData;
+                data.Should().NotBeNull();
+                data?.Formats.Length.Should().Be(2);
+                data?.LiteralDataDomains.Length.Should().Be(1);
+            }
+        }
     }
 }
