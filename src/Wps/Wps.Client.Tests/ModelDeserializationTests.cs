@@ -337,5 +337,81 @@ namespace Wps.Client.Tests
             serviceIdentification.AccessConstraints.Should().Be("NONE");
         }
 
+        [Fact]
+        public void DeserializeServiceProvider_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<ows:ServiceProvider xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xlin=""http://www.w3.org/1999/xlink"">
+                                  <ows:ProviderName>CompanyName</ows:ProviderName>
+                                  <ows:ProviderSite xlin:href=""http://sd.test.tdl""/>
+                                  <ows:ServiceContact>
+                                  </ows:ServiceContact>
+                                </ows:ServiceProvider>";
+
+            var serviceProvider = _serializer.Deserialize<ServiceProvider>(xml);
+            serviceProvider.ProviderName.Should().Be("CompanyName");
+            serviceProvider.ProviderSite.HyperlinkReference.Should().Be("http://sd.test.tdl");
+            serviceProvider.ServiceContact.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void DeserializeServiceContact_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<ows:ServiceContact xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                                    <ows:IndividualName>Test name</ows:IndividualName>
+                                    <ows:PositionName>Test position</ows:PositionName>
+                                    <ows:ContactInfo/>
+                                    <ows:Role>Test role</ows:Role>
+                                </ows:ServiceContact>";
+
+            var serviceContact = _serializer.Deserialize<ServiceContact>(xml);
+            serviceContact.IndividualName.Should().Be("Test name");
+            serviceContact.PositionName.Should().Be("Test position");
+            serviceContact.ContactInfo.Should().NotBeNull();
+            serviceContact.Role.Should().Be("Test role");
+        }
+
+        [Fact]
+        public void DeserializeContactInfo_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<ows:ContactInfo xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                                    <ows:Phone>
+                                        <ows:Voice>test1</ows:Voice>
+                                        <ows:Voice>test2</ows:Voice>
+                                    </ows:Phone>
+                                    <ows:Address/>
+                                    <ows:HoursOfService>10am-8pm</ows:HoursOfService>
+                                    <ows:ContactInstructions>None</ows:ContactInstructions>
+                                </ows:ContactInfo>";
+            var contactInfo = _serializer.Deserialize<ContactInfo>(xml);
+            contactInfo.Address.Should().NotBeNull();
+            contactInfo.ContactInstructions.Should().Be("None");
+            contactInfo.Phone.Should().BeEquivalentTo("test1", "test2");
+            contactInfo.HoursOfService.Should().Be("10am-8pm");
+        }
+
+        [Fact]
+        public void DeserializeAddress_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<ows:Address xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                                    <ows:DeliveryPoint>Point 1</ows:DeliveryPoint>
+                                    <ows:DeliveryPoint>Point 2</ows:DeliveryPoint>
+                                    <ows:City>Mars</ows:City>
+                                    <ows:AdministrativeArea>None</ows:AdministrativeArea>
+                                    <ows:PostalCode>NoZip</ows:PostalCode>
+                                    <ows:Country>No country</ows:Country>
+                                    <ows:ElectronicMailAddress>test1@example.com</ows:ElectronicMailAddress>
+                                    <ows:ElectronicMailAddress>test2@example.com</ows:ElectronicMailAddress>
+                                    <ows:ElectronicMailAddress>test3@example.com</ows:ElectronicMailAddress>
+                                </ows:Address>";
+
+            var address = _serializer.Deserialize<Address>(xml);
+            address.AdministrativeArea.Should().Be("None");
+            address.City.Should().Be("Mars");
+            address.DeliveryPoints.Should().BeEquivalentTo("Point 1", "Point 2");
+            address.Emails.Should().BeEquivalentTo("test1@example.com", "test2@example.com", "test3@example.com");
+            address.PostalCode.Should().Be("NoZip");
+            address.Country.Should().Be("No country");
+        }
+
     }
 }
