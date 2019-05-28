@@ -264,7 +264,7 @@ namespace Wps.Client.Tests
                             </wps:Output>
                         </wps:Process>";
 
-            using(var reader = new StringReader(xml))
+            using (var reader = new StringReader(xml))
             {
                 var process = serializer.Deserialize(reader) as Process;
                 process?.Inputs.Length.Should().Be(4);
@@ -294,6 +294,32 @@ namespace Wps.Client.Tests
                 processOffering?.ProcessModel.Should().Be("test");
                 processOffering?.Process.Should().NotBeNull();
                 processOffering?.Process.GetType().Should().Be(typeof(Process));
+            }
+        }
+
+        [Fact]
+        public void DeserializeProcessOfferingCollection_ValidXmlGiven_ShouldPass()
+        {
+            var serializer = new XmlSerializer(typeof(ProcessOfferingCollection));
+            var xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                        <wps:ProcessOfferings xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:xml=""http://www.w3.org/XML/1998/namespace"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xsi:schemaLocation=""http://www.opengis.net/wps/2.0 http://schemas.opengis.net/wps/2.0/wps.xsd"">
+                            <wps:ProcessOffering></wps:ProcessOffering>
+                            <wps:ProcessOffering></wps:ProcessOffering>
+                            <wps:ProcessOffering></wps:ProcessOffering>
+                        </wps:ProcessOfferings>";
+
+            using (var reader = new StringReader(xml))
+            {
+                var processOfferingCollection = serializer.Deserialize(reader) as ProcessOfferingCollection;
+                processOfferingCollection?.Count.Should().Be(3);
+                if (processOfferingCollection != null)
+                {
+                    foreach (var offering in processOfferingCollection)
+                    {
+                        offering.Should().NotBeNull();
+                        offering.GetType().Should().Be(typeof(ProcessOffering));
+                    }
+                }
             }
         }
 
