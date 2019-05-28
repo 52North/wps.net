@@ -308,5 +308,34 @@ namespace Wps.Client.Tests
             summary.Keywords.Should().BeEquivalentTo("WPS", "geospatial", "geoprocessing");
         }
 
+        [Fact]
+        public void DeserializeServiceIdentification_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<ows:ServiceIdentification xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                                    <ows:Title>52°North WPS 4.0.0-beta.4-SNAPSHOT</ows:Title>
+                                    <ows:Abstract>Service based on the 52°North implementation of WPS 1.0.0 and 2.0.0</ows:Abstract>
+                                    <ows:Keywords>
+                                        <ows:Keyword>WPS</ows:Keyword>
+                                        <ows:Keyword>geospatial</ows:Keyword>
+                                        <ows:Keyword>geoprocessing</ows:Keyword>
+                                    </ows:Keywords>
+                                    <ows:ServiceType>WPS</ows:ServiceType>
+                                    <ows:ServiceTypeVersion>1.0.0</ows:ServiceTypeVersion>
+                                    <ows:ServiceTypeVersion>2.0.0</ows:ServiceTypeVersion>
+                                    <ows:Fees>NONE</ows:Fees>
+                                    <ows:AccessConstraints>NONE</ows:AccessConstraints>
+                                </ows:ServiceIdentification>";
+
+            var serviceIdentification = _serializer.Deserialize<ServiceIdentification>(xml);
+            serviceIdentification.Title.Should().Be("52°North WPS 4.0.0-beta.4-SNAPSHOT");
+            serviceIdentification.Abstract.Should()
+                .Be("Service based on the 52°North implementation of WPS 1.0.0 and 2.0.0");
+            serviceIdentification.Keywords.Should().BeEquivalentTo("WPS", "geospatial", "geoprocessing");
+            serviceIdentification.Type.Should().Be("WPS");
+            serviceIdentification.Versions.Should().BeEquivalentTo("1.0.0", "2.0.0");
+            serviceIdentification.Fees.Should().Be("NONE");
+            serviceIdentification.AccessConstraints.Should().Be("NONE");
+        }
+
     }
 }
