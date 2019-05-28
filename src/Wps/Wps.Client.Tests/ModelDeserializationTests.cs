@@ -275,5 +275,27 @@ namespace Wps.Client.Tests
             }
         }
 
+        [Fact]
+        public void DeserializeProcessOffering_ValidXmlGiven_ShouldPass()
+        {
+            var serializer = new XmlSerializer(typeof(ProcessOffering));
+            var xml = @"<wps:ProcessOffering processVersion=""1.0.0"" jobControlOptions=""sync-execute async-execute"" outputTransmission=""value reference"" processModel=""test""
+                                                xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                            <wps:Process>
+	                        </wps:Process>
+                        </wps:ProcessOffering>";
+
+            using (var reader = new StringReader(xml))
+            {
+                var processOffering = serializer.Deserialize(reader) as ProcessOffering;
+                processOffering?.ProcessVersion.Should().Be("1.0.0");
+                processOffering?.JobControlOptions.Should().Be("sync-execute async-execute");
+                processOffering?.OutputTransmission.Should().Be("value reference");
+                processOffering?.ProcessModel.Should().Be("test");
+                processOffering?.Process.Should().NotBeNull();
+                processOffering?.Process.GetType().Should().Be(typeof(Process));
+            }
+        }
+
     }
 }
