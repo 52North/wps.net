@@ -282,5 +282,31 @@ namespace Wps.Client.Tests
             }
         }
 
+        [Fact]
+        public void DeserializeProcessSummary_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<wps:ProcessSummary processVersion=""1.0.0"" jobControlOptions=""sync-execute async-execute"" outputTransmission=""value reference"" processModel=""test"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:xlin=""http://www.w3.org/1999/xlink"" >
+                                    <ows:Title>Canonical components analysis (CCA) program for image processing.</ows:Title>
+                                    <ows:Identifier>i.cca</ows:Identifier>
+                                    <ows:Abstract>Test abstract</ows:Abstract>
+                                    <ows:Keywords>
+                                        <ows:Keyword>WPS</ows:Keyword>
+                                        <ows:Keyword>geospatial</ows:Keyword>
+                                        <ows:Keyword>geoprocessing</ows:Keyword>
+                                    </ows:Keywords>
+                                    <ows:Metadata xlin:role=""Process description"" xlin:href=""http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.cca""/>
+                                </wps:ProcessSummary>";
+
+            var summary = _serializer.Deserialize<ProcessSummary>(xml);
+            summary.Title.Should().Be("Canonical components analysis (CCA) program for image processing.");
+            summary.Identifier.Should().Be("i.cca");
+            summary.Abstract.Should().Be("Test abstract");
+            summary.ProcessVersion.Should().Be("1.0.0");
+            summary.ProcessModel.Should().Be("test");
+            summary.JobControlOptions.Should().Be("sync-execute async-execute");
+            summary.OutputTransmission.Should().Be("value reference");
+            summary.Keywords.Should().BeEquivalentTo("WPS", "geospatial", "geoprocessing");
+        }
+
     }
 }
