@@ -413,5 +413,98 @@ namespace Wps.Client.Tests
             address.Country.Should().Be("No country");
         }
 
+        [Fact]
+        public void DeserializeOperationParameter_ValidXmlGiven_ShouldPass()
+        {
+            var xml = @"<ows:Parameter xmlns:ows=""http://www.opengis.net/ows/2.0"" name=""test parameter"">
+                            <ows:Value>Value 1</ows:Value>
+                            <ows:Value>Value 2</ows:Value>
+                        </ows:Parameter>";
+
+            var operationParameter = _serializer.Deserialize<OperationParameter>(xml);
+            operationParameter.Name.Should().Be("test parameter");
+            operationParameter.Values.Should().BeEquivalentTo("Value 1", "Value 2");
+        }
+
+        [Fact]
+        public void DeserializeOperationConstraint_ValidXmlGiven_ShouldPass()
+        {
+            var xml = @"<ows:Constraint xmlns:ows=""http://www.opengis.net/ows/2.0"" name=""test constraint"">
+                            <ows:Value>Value 1</ows:Value>
+                            <ows:Value>Value 2</ows:Value>
+                        </ows:Constraint>";
+
+            var operationParameter = _serializer.Deserialize<OperationConstraint>(xml);
+            operationParameter.Name.Should().Be("test constraint");
+            operationParameter.Values.Should().BeEquivalentTo("Value 1", "Value 2");
+        }
+
+        [Fact]
+        public void DeserializeOperationsMetadata_ValidXmlGiven_ShouldPass()
+        {
+            var xml = @"<ows:OperationsMetadata xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                            <ows:Operation></ows:Operation>
+                            <ows:Operation></ows:Operation>
+                            <ows:Operation></ows:Operation>
+                            <ows:Operation></ows:Operation>
+                            <ows:Constraint></ows:Constraint>
+                            <ows:Constraint></ows:Constraint>
+                            <ows:Parameter></ows:Parameter>
+                            <ows:Parameter></ows:Parameter>
+                            <ows:Parameter></ows:Parameter>
+                        </ows:OperationsMetadata>";
+
+            var opMetadata = _serializer.Deserialize<OperationsMetadata>(xml);
+            opMetadata.Constraints.Length.Should().Be(2);
+            opMetadata.Operations.Length.Should().Be(4);
+            opMetadata.Parameters.Length.Should().Be(3);
+        }
+
+        [Fact]
+        public void DeserializeOperation_ValidXmlGiven_ShouldPass()
+        {
+             const string xml = @"<ows:Operation xmlns:ows=""http://www.opengis.net/ows/2.0"" name=""test operation"">
+                            <ows:DCP></ows:DCP>
+                            <ows:DCP></ows:DCP>
+                            <ows:DCP></ows:DCP>
+                            <ows:DCP></ows:DCP>
+                            <ows:Constraint></ows:Constraint>
+                            <ows:Constraint></ows:Constraint>
+                            <ows:Parameter></ows:Parameter>
+                            <ows:Parameter></ows:Parameter>
+                            <ows:Parameter></ows:Parameter>
+                        </ows:Operation>";
+
+            var operation = _serializer.Deserialize<Operation>(xml);
+            operation.Name.Should().Be("test operation");
+            operation.DistributedComputingPlatforms.Length.Should().Be(4);
+            operation.Constraints.Length.Should().Be(2);
+            operation.Parameters.Length.Should().Be(3);
+        }
+
+        [Fact]
+        public void DeserializeDistributedComputingPlatform_ValidXmlGiven_ShouldPass()
+        {
+            var xml = @"<ows:DCP xmlns:ows=""http://www.opengis.net/ows/2.0"">
+                            <ows:HTTP></ows:HTTP>
+                        </ows:DCP>";
+
+            var dcp = _serializer.Deserialize<DistributedComputingPlatform>(xml);
+            dcp.HttpConnectionPoint.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void DeserializePlatformConnectionPoint_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<ows:HTTP xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xlin=""http://www.w3.org/1999/xlink"">
+                                    <ows:Get xlin:href=""test hyperlink get""/>
+                                    <ows:Post xlin:href=""test hyperlink post""/>
+                                 </ows:HTTP>";
+
+            var pcp = _serializer.Deserialize<PlatformConnectionPoint>(xml);
+            pcp.Get.Hyperlink.Should().Be("test hyperlink get");
+            pcp.Post.Hyperlink.Should().Be("test hyperlink post");
+        }
+
     }
 }
