@@ -2,6 +2,7 @@
 using System.IO;
 using Wps.Client.Models;
 using Wps.Client.Models.Data;
+using Wps.Client.Models.Responses;
 using Wps.Client.Services;
 using Xunit;
 
@@ -504,6 +505,34 @@ namespace Wps.Client.Tests
             var pcp = _serializer.Deserialize<PlatformConnectionPoint>(xml);
             pcp.Get.Hyperlink.Should().Be("test hyperlink get");
             pcp.Post.Hyperlink.Should().Be("test hyperlink post");
+        }
+
+        [Fact]
+        public void DeserializeGetCapabilitiesResponse_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<wps:Capabilities xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:ows=""http://www.opengis.net/ows/2.0"" version=""2.0.0"" service=""WPS"">
+                                    <ows:ServiceIdentification></ows:ServiceIdentification>
+                                    <ows:ServiceProvider></ows:ServiceProvider>
+                                    <ows:Languages>
+                                        <ows:Language>test</ows:Language>
+                                    </ows:Languages>
+                                    <ows:OperationsMetadata>
+                                        <ows:Operation></ows:Operation>
+                                    </ows:OperationsMetadata>
+                                    <wps:Contents>
+                                        <wps:ProcessSummary></wps:ProcessSummary>
+                                        <wps:ProcessSummary></wps:ProcessSummary>
+                                    </wps:Contents>
+                                 </wps:Capabilities>";
+
+            var response = _serializer.Deserialize<GetCapabilitiesResponse>(xml);
+            response.ServiceIdentification.Should().NotBeNull();
+            response.ServiceProvider.Should().NotBeNull();
+            response.OperationsMetadata.Should().NotBeNull();
+            response.Languages.Should().NotBeEmpty();
+            response.Service.Should().Be("WPS");
+            response.Version.Should().Be("2.0.0");
+            response.ProcessSummaries.Should().HaveCount(2);
         }
 
     }
