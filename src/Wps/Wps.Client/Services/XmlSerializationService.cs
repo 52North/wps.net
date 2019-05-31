@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 using System.Xml.Serialization;
+using Wps.Client.Utils;
 
 namespace Wps.Client.Services
 {
@@ -9,9 +10,14 @@ namespace Wps.Client.Services
         public string Serialize<T>(T obj)
         {
             var serializer = new XmlSerializer(typeof(T));
+            var namespaces = new XmlSerializerNamespaces();
+            namespaces.Add("wps", ModelNamespaces.Wps);
+            namespaces.Add("ows", ModelNamespaces.Ows);
+            namespaces.Add("xli", ModelNamespaces.Xlink);
+            namespaces.Add("xsi", ModelNamespaces.XmlSchemaInstance);
             using (var writer = new CustomEncodingStringWriter(Encoding.UTF8))
             {
-                serializer.Serialize(writer, obj);
+                serializer.Serialize(writer, obj, namespaces);
                 return writer.ToString();
             }
         }
