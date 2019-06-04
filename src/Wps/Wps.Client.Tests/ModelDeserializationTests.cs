@@ -1,10 +1,12 @@
 ﻿using FluentAssertions;
+using System;
 using System.IO;
 using Wps.Client.Models;
 using Wps.Client.Models.Data;
 using Wps.Client.Models.Responses;
 using Wps.Client.Services;
 using Xunit;
+using Process = Wps.Client.Models.Process;
 
 namespace Wps.Client.Tests
 {
@@ -533,6 +535,29 @@ namespace Wps.Client.Tests
             response.Service.Should().Be("WPS");
             response.Version.Should().Be("2.0.0");
             response.ProcessSummaries.Should().HaveCount(2);
+        }
+
+        [Fact]
+        public void DeserializeStatusInfo_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"
+<wps:StatusInfo xsi:schemaLocation=""http://www.opengis.net/wps/2.0 http://schemas.opengis.net/wps/2.0/wps.xsd"" xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+    <wps:JobID>test-id</wps:JobID>
+    <wps:Status>test-status</wps:Status>
+    <wps:ExpirationDate>2019-05-20T20:20:20Z</wps:ExpirationDate>
+    <wps:EstimatedCompletion>2019-05-20T20:20:20Z</wps:EstimatedCompletion>
+    <wps:NextPoll>2019-05-20T20:20:20Z</wps:NextPoll>
+    <wps:PercentCompleted>45</wps:PercentCompleted>
+</wps:StatusInfo>";
+            var expectedDateTime = new DateTime(2019, 5, 20, 20, 20, 20);
+
+            var response = _serializer.Deserialize<StatusInfo>(xml);
+            response.Status.Should().Be("test-status");
+            response.JobId.Should().Be("test-id");
+            response.EstimatedCompletion.Should().Be(expectedDateTime);
+            response.NextPollDateTime.Should().Be(expectedDateTime);
+            response.ExpirationDate.Should().Be(expectedDateTime);
+            response.CompletionRate.Should().Be(45);
         }
 
     }
