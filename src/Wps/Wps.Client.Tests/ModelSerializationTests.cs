@@ -80,5 +80,26 @@ namespace Wps.Client.Tests
             trimmedResult.Should().Be(trimmedExpectedXml);
         }
 
+        [Fact]
+        public void SerializeGetResultRequest_ValidRequestGiven_ShouldPass()
+        {
+            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+                                         <wps:GetResult xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" service=""WPS"" version=""2.0.0"" xmlns:wps=""http://www.opengis.net/wps/2.0"">
+                                             <wps:JobID>testJobId</wps:JobID>
+                                         </wps:GetResult>";
+
+            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
+
+            var request = new GetResultRequest()
+            {
+                JobId = "testJobId"
+            };
+
+            var resultXml = _serializer.Serialize(request);
+            var trimmedResult = Regex.Replace(resultXml, @"\s+", string.Empty);
+            trimmedResult.Should().Be(trimmedExpectedXml);
+        }
+
     }
 }
