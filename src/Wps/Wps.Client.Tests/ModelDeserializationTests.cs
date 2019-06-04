@@ -560,5 +560,45 @@ namespace Wps.Client.Tests
             response.CompletionRate.Should().Be(45);
         }
 
+        [Fact]
+        public void DeserializeResultOutput_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<wps:Output id=""result"" xsi:schemaLocation=""http://www.opengis.net/wps/2.0 http://schemas.opengis.net/wps/2.0/wps.xsd"" xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+                                     <wps:Data schema=""http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd"" mimeType=""application/vnd.google-earth.kml+xml"">
+                                         <kml:kml xmlns:kml=""http://earth.google.com/kml/2.1"" xmlns:xs=""http://www.w3.org/2001/XMLSchema"">
+                                         </kml:kml>
+                                     </wps:Data>
+                                     <wps:Output></wps:Output>
+                                 </wps:Output>";
+            var expectedDateTime = new DateTime(2019, 5, 20, 20, 20, 20);
+
+            var resultOutput = _serializer.Deserialize<ResultOutput>(xml);
+            resultOutput.Data.Should().NotBeNull();
+            resultOutput.Id.Should().Be("result");
+            resultOutput.Output.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void DeserializeResult_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"
+<wps:Result xsi:schemaLocation=""http://www.opengis.net/wps/2.0 http://schemas.opengis.net/wps/2.0/wps.xsd"" xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+    <wps:JobID>test-id</wps:JobID>
+    <wps:Output id=""result"">
+        <wps:Data schema=""http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd"" mimeType=""application/vnd.google-earth.kml+xml"">
+            <kml:kml xmlns:kml=""http://earth.google.com/kml/2.1"" xmlns:xs=""http://www.w3.org/2001/XMLSchema"">
+            </kml:kml>
+        </wps:Data>
+    </wps:Output>
+    <wps:ExpirationDate>2019-05-20T20:20:20Z</wps:ExpirationDate>
+</wps:Result>";
+            var expectedExpirationDate = new DateTime(2019, 5, 20, 20, 20, 20);
+
+            var result = _serializer.Deserialize<Result>(xml);
+            result.ExpirationDate.Should().Be(expectedExpirationDate);
+            result.JobId.Should().Be("test-id");
+            result.Outputs.Should().HaveCount(1);
+        }
+
     }
 }
