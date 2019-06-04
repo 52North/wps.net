@@ -20,10 +20,10 @@ namespace Wps.Client.Tests
         public void SerializeObject_ValidObjectGiven_ShouldPass()
         {
             const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?>
-                                        <TestObject xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+                                         <TestObject xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
                                             <FirstProperty>Test</FirstProperty>
                                             <SecondProperty>10</SecondProperty>
-                                        </TestObject>";
+                                         </TestObject>";
             
             // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
