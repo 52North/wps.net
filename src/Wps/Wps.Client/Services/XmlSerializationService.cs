@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 using Wps.Client.Utils;
 
@@ -7,18 +8,27 @@ namespace Wps.Client.Services
 {
     public class XmlSerializationService : IXmlSerializer
     {
-        public string Serialize<T>(T obj)
+        public string Serialize(object obj, bool omitHeaderDeclaration = false)
         {
-            var serializer = new XmlSerializer(typeof(T));
+            var serializer = new XmlSerializer(obj.GetType());
             var namespaces = new XmlSerializerNamespaces();
             namespaces.Add("wps", ModelNamespaces.Wps);
             namespaces.Add("ows", ModelNamespaces.Ows);
             namespaces.Add("xli", ModelNamespaces.Xlink);
             namespaces.Add("xsi", ModelNamespaces.XmlSchemaInstance);
+
+            var settings = new XmlWriterSettings
+            {
+                OmitXmlDeclaration = omitHeaderDeclaration
+            };
+
             using (var writer = new CustomEncodingStringWriter(Encoding.UTF8))
             {
-                serializer.Serialize(writer, obj, namespaces);
-                return writer.ToString();
+                using (var xmlWriter = XmlWriter.Create(writer, settings))
+                {
+                    serializer.Serialize(xmlWriter, obj, namespaces);
+                    return writer.ToString();
+                }
             }
         }
 
