@@ -600,5 +600,22 @@ namespace Wps.Client.Tests
             result.Outputs.Should().HaveCount(1);
         }
 
+        [Fact]
+        public void DeserializeValueRange_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"
+<Range ows:rangeClosure=""closed-open"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns=""http://www.opengis.net/ows/2.0"">
+    <ows:MinimumValue>10</ows:MinimumValue>
+    <ows:Spacing>100</ows:Spacing>
+    <ows:MaximumValue>1000</ows:MaximumValue>
+</Range>";
+
+            var result = _serializer.Deserialize<ValueRange>(xml);
+            result.MinimumValue.Should().Be("10");
+            result.MaximumValue.Should().Be("1000");
+            result.Spacing.Should().Be("100");
+            result.RangeClosure.Should().Be(RangeClosure.ClosedOpen);
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using System.Text.RegularExpressions;
 using Wps.Client.Models;
+using Wps.Client.Models.Execution;
 using Wps.Client.Models.Requests;
 using Wps.Client.Services;
 using Xunit;
@@ -97,6 +98,32 @@ namespace Wps.Client.Tests
             };
 
             var resultXml = _serializer.Serialize(request);
+            var trimmedResult = Regex.Replace(resultXml, @"\s+", string.Empty);
+            trimmedResult.Should().Be(trimmedExpectedXml);
+        }
+
+        [Fact]
+        public void SerializeValueRange_ValidRangeGiven_ShouldPass()
+        {
+            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+                                         <Range ows:rangeClosure=""closed-open"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns=""http://www.opengis.net/ows/2.0"">
+                                             <ows:MinimumValue>10</ows:MinimumValue>
+                                             <ows:MaximumValue>100</ows:MaximumValue>
+                                             <ows:Spacing>10</ows:Spacing>
+                                         </Range>";
+
+            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
+
+            var range = new ValueRange
+            {
+                MinimumValue = "10",
+                MaximumValue = "100",
+                RangeClosure = RangeClosure.ClosedOpen,
+                Spacing = "10"
+            };
+
+            var resultXml = _serializer.Serialize(range);
             var trimmedResult = Regex.Replace(resultXml, @"\s+", string.Empty);
             trimmedResult.Should().Be(trimmedExpectedXml);
         }
