@@ -175,5 +175,53 @@ namespace Wps.Client.Tests
             trimmedResult.Should().Be(trimmedExpectedXml);
         }
 
+        [Fact]
+        public void SerializeExecuteRequest_ValidRequestGiven_ShouldPass()
+        {
+            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><wps:Execute xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" service=""WPS"" version=""2.0.0"" mode=""sync"" response=""document"" xmlns:wps=""http://www.opengis.net/wps/2.0""><ows:Identifier>org.n52.wps.server.algorithm.SimpleBufferAlgorithm</ows:Identifier><wps:Input id=""data""><wps:Reference xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xli:href=""http://geoprocessing.demo.52north.org:8080/geoserver/wfs?SERVICE=WFS&amp;VERSION=1.0.0&amp;REQUEST=GetFeature&amp;TYPENAME=topp:tasmania_roads&amp;SRS=EPSG:4326&amp;OUTPUTFORMAT=GML3"" schema=""http://schemas.opengis.net/gml/3.1.1/base/feature.xsd"" xmlns:wps=""http://www.opengis.net/wps/2.0"" /></wps:Input><wps:Input id=""width""><wps:Data><LiteralValue xmlns=""http://www.opengis.net/wps/2.0"">0.05</LiteralValue></wps:Data></wps:Input><wps:Output transmission=""value"" id=""result"" /></wps:Execute>";
+
+            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
+
+            var executeRequest = new ExecuteRequest
+            {
+                Identifier = "org.n52.wps.server.algorithm.SimpleBufferAlgorithm",
+                ExecutionMode = ExecutionMode.Synchronous,
+                ResponseType = ResponseType.Document,
+                Inputs = new[]
+                {
+                    new DataInput
+                    {
+                        Identifier = "data",
+                        Reference = new ResourceReference
+                        {
+                            Href = "http://geoprocessing.demo.52north.org:8080/geoserver/wfs?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&TYPENAME=topp:tasmania_roads&SRS=EPSG:4326&OUTPUTFORMAT=GML3",
+                            Schema = "http://schemas.opengis.net/gml/3.1.1/base/feature.xsd"
+                        }
+                    },
+                    new DataInput
+                    {
+                        Identifier = "width",
+                        Data = new LiteralDataValue
+                        {
+                            Value = 0.05f
+                        }
+                    }
+                },
+                Outputs = new []
+                {
+                    new DataOutput
+                    {
+                        Identifier = "result",
+                        Transmission = TransmissionMode.Value
+                    }
+                }
+            };
+
+            var resultXml = _serializer.Serialize(executeRequest);
+            var trimmedResult = Regex.Replace(resultXml, @"\s+", string.Empty);
+            trimmedResult.Should().Be(trimmedExpectedXml);
+        }
+
     }
 }
