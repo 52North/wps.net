@@ -10,5 +10,8 @@ namespace Wps.Client.Models.Data
         [XmlElement("Value", Namespace = ModelNamespaces.Ows)]
         public string[] Values { get; set; }
 
+        [XmlElement("Range", Namespace = ModelNamespaces.Ows)]
+        public ValueRange Range { get; set; }
+
     }
 }

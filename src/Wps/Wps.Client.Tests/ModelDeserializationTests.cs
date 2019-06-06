@@ -632,7 +632,6 @@ namespace Wps.Client.Tests
             result.Outputs.Should().HaveCount(1);
         }
 
-<<<<<<< HEAD
         [Fact]
         public void DeserializeValueRange_ValidXmlGiven_ShouldPass()
         {
@@ -649,8 +648,5 @@ namespace Wps.Client.Tests
             result.Spacing.Should().Be("100");
             result.RangeClosure.Should().Be(RangeClosure.ClosedOpen);
         }
-
-=======
->>>>>>> parent of 3b286ad... Add Ranged value model with (de)serialization tests
     }
 }

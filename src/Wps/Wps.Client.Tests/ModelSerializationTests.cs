@@ -101,7 +101,6 @@ namespace Wps.Client.Tests
             trimmedResult.Should().Be(trimmedExpectedXml);
         }
 
-<<<<<<< HEAD
         [Fact]
         public void SerializeValueRange_ValidRangeGiven_ShouldPass()
         {
@@ -128,8 +127,5 @@ namespace Wps.Client.Tests
             var trimmedResult = Regex.Replace(resultXml, @"\s+", string.Empty);
             trimmedResult.Should().Be(trimmedExpectedXml);
         }
-
-=======
->>>>>>> parent of 3b286ad... Add Ranged value model with (de)serialization tests
     }
 }
