@@ -1,6 +1,7 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using System.Text.RegularExpressions;
 using Wps.Client.Models;
+using Wps.Client.Models.Execution;
 using Wps.Client.Models.Requests;
 using Wps.Client.Services;
 using Xunit;
@@ -127,5 +128,33 @@ namespace Wps.Client.Tests
             var trimmedResult = Regex.Replace(resultXml, @"\s+", string.Empty);
             trimmedResult.Should().Be(trimmedExpectedXml);
         }
+
+        [Fact]
+        public void SerializeDataInput_ValidInputGiven_ShouldPass()
+        {
+            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><Input id=""test-id"" xmlns=""http://www.opengis.net/wps/2.0""><wps:Data xmlns:wps=""http://www.opengis.net/wps/2.0""><LiteralValue xmlns=""http://www.opengis.net/wps/2.0"">105</LiteralValue></wps:Data><wps:Reference xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xli:href=""test"" schema=""test-schema"" xmlns:wps=""http://www.opengis.net/wps/2.0"" /></Input>";
+
+            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
+
+            var dataInput = new DataInput
+            {
+                Identifier = "test-id",
+                Reference = new ResourceReference
+                {
+                    Href = "test",
+                    Schema = "test-schema"
+                },
+                Data = new LiteralDataValue
+                {
+                    Value = 105
+                }
+            };
+
+            var resultXml = _serializer.Serialize(dataInput);
+            var trimmedResult = Regex.Replace(resultXml, @"\s+", string.Empty);
+            trimmedResult.Should().Be(trimmedExpectedXml);
+        }
+
     }
 }
