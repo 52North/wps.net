@@ -42,6 +42,14 @@ namespace Wps.Client.Models.Execution
             {
                 writer.WriteRaw(xmlSerializer.Serialize(Reference, true));
             }
+
+            if (Inputs != null)
+            {
+                foreach (var input in Inputs)
+                {
+                    writer.WriteRaw(xmlSerializer.Serialize(input, true));
+                }
+            }
         }
     }
 }
