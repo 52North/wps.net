@@ -1,7 +1,6 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using System.Text.RegularExpressions;
 using Wps.Client.Models;
-using Wps.Client.Models.Execution;
 using Wps.Client.Models.Requests;
 using Wps.Client.Services;
 using Xunit;
@@ -102,15 +101,17 @@ namespace Wps.Client.Tests
             trimmedResult.Should().Be(trimmedExpectedXml);
         }
 
+<<<<<<< HEAD
         [Fact]
         public void SerializeValueRange_ValidRangeGiven_ShouldPass()
         {
-            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?>
-                                         <Range ows:rangeClosure=""closed-open"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns=""http://www.opengis.net/ows/2.0"">
-                                             <ows:MinimumValue>10</ows:MinimumValue>
-                                             <ows:MaximumValue>100</ows:MaximumValue>
-                                             <ows:Spacing>10</ows:Spacing>
-                                         </Range>";
+            const string expectedXml = @"
+<?xml version=""1.0"" encoding=""utf-8""?>
+<ows:Range xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" rangeClosure=""closed-open"" xmlns:ows=""http://www.opengis.net/ows/2.0"">
+   <ows:MinimumValue>10</ows:MinimumValue>
+   <ows:MaximumValue>100</ows:MaximumValue>
+   <ows:Spacing>10</ows:Spacing>
+</ows:Range>";
 
             // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
@@ -128,5 +129,7 @@ namespace Wps.Client.Tests
             trimmedResult.Should().Be(trimmedExpectedXml);
         }
 
+=======
+>>>>>>> parent of 3b286ad... Add Ranged value model with (de)serialization tests
     }
 }

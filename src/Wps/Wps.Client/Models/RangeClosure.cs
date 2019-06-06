@@ -1,12 +1,14 @@
-﻿namespace Wps.Client.Models
+﻿using System.Xml.Serialization;
+
+namespace Wps.Client.Models
 {
     public enum RangeClosure
     {
 
-        Closed,
-        Open,
-        OpenClosed,
-        ClosedOpen
+        [XmlEnum("closed")] Closed,
+        [XmlEnum("open")] Open,
+        [XmlEnum("open-closed")] OpenClosed,
+        [XmlEnum("closed-open")] ClosedOpen
 
     }
 }

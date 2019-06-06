@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using System;
 using System.IO;
 using Wps.Client.Models;
@@ -49,7 +49,7 @@ namespace Wps.Client.Tests
         }
 
         [Fact]
-        public void DeserializeLiteralDataDomain_ValidXmlGiven_WithAllowedValues_ShouldPass()
+        public void DeserializeLiteralDataDomain_ValidXmlGiven_WithAllowedValues_WithValues_ShouldPass()
         {
             const string xml = @"<wps:LiteralDataDomain default=""true"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:wps=""http://www.opengis.net/wps/2.0"">
                         <ows:AllowedValues>
@@ -75,6 +75,38 @@ namespace Wps.Client.Tests
             if (domain?.PossibleLiteralValues is AllowedValues values)
             {
                 values.Values.Length.Should().Be(6);
+            }
+        }
+
+        [Fact]
+        public void DeserializeLiteralDataDomain_ValidXmlGiven_WithAllowedValues_WithRange_ShouldPass()
+        {
+            const string xml = @"<wps:LiteralDataDomain default=""true"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:wps=""http://www.opengis.net/wps/2.0"">
+                        <ows:AllowedValues>
+                            <ows:Range rangeClosure = ""open"">
+                                <ows:MinimumValue>1</ows:MinimumValue>
+                                <ows:MaximumValue>1000</ows:MaximumValue>
+                                <ows:Spacing>100</ows:Spacing>
+                            </ows:Range>
+                        </ows:AllowedValues>
+                        <ows:DataType ows:reference=""string""/>
+                        <ows:DefaultValue>uncorrected</ows:DefaultValue>
+                        <ows:ValuesUnit>Meter</ows:ValuesUnit>
+                    </wps:LiteralDataDomain>";
+
+            var domain = _serializer.Deserialize<LiteralDataDomain>(xml);
+            domain.Should().NotBeNull();
+            domain?.IsDefault.Should().BeTrue();
+            domain?.DefaultValue.Should().Be("uncorrected");
+            domain?.PossibleLiteralValues.GetType().Should().Be(typeof(AllowedValues));
+            domain?.DataType?.Reference.Should().Be("string");
+            domain?.UnitOfMeasure.Should().Be("Meter");
+            if (domain?.PossibleLiteralValues is AllowedValues values)
+            {
+                values.Range.MinimumValue.Should().Be("1");
+                values.Range.MaximumValue.Should().Be("1000");
+                values.Range.Spacing.Should().Be("100");
+                values.Range.RangeClosure.Should().Be(RangeClosure.Open);
             }
         }
 
@@ -600,11 +632,12 @@ namespace Wps.Client.Tests
             result.Outputs.Should().HaveCount(1);
         }
 
+<<<<<<< HEAD
         [Fact]
         public void DeserializeValueRange_ValidXmlGiven_ShouldPass()
         {
             const string xml = @"
-<Range ows:rangeClosure=""closed-open"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns=""http://www.opengis.net/ows/2.0"">
+<Range rangeClosure=""closed-open"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns=""http://www.opengis.net/ows/2.0"">
     <ows:MinimumValue>10</ows:MinimumValue>
     <ows:Spacing>100</ows:Spacing>
     <ows:MaximumValue>1000</ows:MaximumValue>
@@ -617,5 +650,7 @@ namespace Wps.Client.Tests
             result.RangeClosure.Should().Be(RangeClosure.ClosedOpen);
         }
 
+=======
+>>>>>>> parent of 3b286ad... Add Ranged value model with (de)serialization tests
     }
 }
