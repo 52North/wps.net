@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 using Wps.Client.Utils;
 
-namespace Wps.Client.Models
+namespace Wps.Client.Models.Ows
 {
     [XmlRoot("Address", Namespace = ModelNamespaces.Ows)]
     public class Address

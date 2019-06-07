@@ -1,4 +1,5 @@
 ﻿using System.Xml.Serialization;
+using Wps.Client.Models.Ows;
 using Wps.Client.Utils;
 
 namespace Wps.Client.Models.Data

@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using Wps.Client.Models;
 using Wps.Client.Models.Execution;
+using Wps.Client.Models.Ows;
 using Wps.Client.Models.Requests;
 using Wps.Client.Services;
 using Xunit;

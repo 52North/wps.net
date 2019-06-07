@@ -1,8 +1,7 @@
-﻿using System.Xml;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using Wps.Client.Utils;
 
-namespace Wps.Client.Models
+namespace Wps.Client.Models.Ows
 {
     [XmlRoot("Constraint", Namespace = ModelNamespaces.Ows)]
     public class OperationConstraint

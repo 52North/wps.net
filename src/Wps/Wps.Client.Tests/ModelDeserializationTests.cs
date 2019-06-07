@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using Wps.Client.Models;
 using Wps.Client.Models.Data;
+using Wps.Client.Models.Ows;
 using Wps.Client.Models.Responses;
 using Wps.Client.Services;
 using Xunit;
