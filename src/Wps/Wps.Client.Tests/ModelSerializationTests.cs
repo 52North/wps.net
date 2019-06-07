@@ -251,5 +251,31 @@ namespace Wps.Client.Tests
             trimmedResult.Should().Be(trimmedExpectedXml);
         }
 
+        [Fact]
+        public void SerializeBoundingBoxValue_ValidObjectsGiven_ShouldPass()
+        {
+            const string expectedXml = @"
+<?xml version=""1.0"" encoding=""utf-8""?>
+<BoundingBox p1:crs=""crs-uri"" p1:dimensions=""3"" xmlns:p1=""http://www.opengis.net/ows/2.0"" xmlns=""http://www.opengis.net/ows/2.0"">
+    <ows:LowerCorner xmlns:ows=""http://www.opengis.net/ows/2.0"">1.1 2.2 3.3</ows:LowerCorner>
+    <ows:UpperCorner xmlns:ows=""http://www.opengis.net/ows/2.0"">3.1 2.2 1.3</ows:UpperCorner>
+</BoundingBox>";
+
+            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
+
+            var boundingBoxData = new BoundingBoxValue
+            {
+                CrsUri = "crs-uri",
+                DimensionCount = 3,
+                LowerCornerPoints = new[] { 1.1, 2.2, 3.3 },
+                UpperCornerPoints = new[] { 3.1, 2.2, 1.3 },
+            };
+
+            var resultXml = _serializer.Serialize(boundingBoxData);
+            var trimmedResult = Regex.Replace(resultXml, @"\s+", string.Empty);
+            trimmedResult.Should().Be(trimmedExpectedXml);
+        }
+
     }
 }
