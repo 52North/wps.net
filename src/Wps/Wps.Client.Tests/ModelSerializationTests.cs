@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using System.Text.RegularExpressions;
 using Wps.Client.Models;
 using Wps.Client.Models.Execution;
@@ -21,7 +21,7 @@ namespace Wps.Client.Tests
         [Fact]
         public void SerializeGetCapabilitiesRequest_ValidRequestGiven_ShouldPass()
         {
-            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><GetCapabilities xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" service=""WPS"" xmlns=""http://www.opengis.net/wps/2.0"" />";
+            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><wps:GetCapabilities xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" service=""WPS"" xmlns:wps=""http://www.opengis.net/wps/2.0"" />";
 
             // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
