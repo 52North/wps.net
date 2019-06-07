@@ -29,7 +29,7 @@ namespace Wps.Client.Models
         /// At least one mode is required.
         /// </remarks>
         [XmlAttribute("outputTransmission", Namespace = ModelNamespaces.Wps)]
-        public string OutputTransmission { get; set; }
+        public TransmissionMode OutputTransmission { get; set; }
 
         /// <summary>
         /// Keywords that characterize the process.

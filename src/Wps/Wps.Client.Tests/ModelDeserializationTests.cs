@@ -289,7 +289,7 @@ namespace Wps.Client.Tests
             var processOffering = _serializer.Deserialize<ProcessOffering>(xml);
             processOffering?.ProcessVersion.Should().Be("1.0.0");
             processOffering?.JobControlOptions.Should().Be("sync-execute async-execute");
-            processOffering?.OutputTransmission.Should().Be("value reference");
+            processOffering?.OutputTransmission.Should().Be(TransmissionMode.ValueReference);
             processOffering?.ProcessModel.Should().Be("test");
             processOffering?.Process.Should().NotBeNull();
             processOffering?.Process.GetType().Should().Be(typeof(Process));
@@ -339,7 +339,7 @@ namespace Wps.Client.Tests
             summary.ProcessVersion.Should().Be("1.0.0");
             summary.ProcessModel.Should().Be("test");
             summary.JobControlOptions.Should().Be("sync-execute async-execute");
-            summary.OutputTransmission.Should().Be("value reference");
+            summary.OutputTransmission.Should().Be(TransmissionMode.ValueReference);
             summary.Keywords.Should().BeEquivalentTo("WPS", "geospatial", "geoprocessing");
         }
 

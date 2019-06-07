@@ -1,5 +1,4 @@
-﻿using System.Xml.Schema;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using Wps.Client.Utils;
 
 namespace Wps.Client.Models
@@ -30,7 +29,7 @@ namespace Wps.Client.Models
         /// At least one mode is required.
         /// </remarks>
         [XmlAttribute("outputTransmission", Namespace = ModelNamespaces.Wps)]
-        public string OutputTransmission { get; set; }
+        public TransmissionMode OutputTransmission { get; set; }
 
         /// <summary>
         /// Release version of the process.
