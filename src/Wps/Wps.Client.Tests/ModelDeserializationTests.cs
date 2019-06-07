@@ -648,5 +648,38 @@ namespace Wps.Client.Tests
             result.Spacing.Should().Be("100");
             result.RangeClosure.Should().Be(RangeClosure.ClosedOpen);
         }
+
+        [Fact]
+        public void DeserializeCoordinateReferenceSystem_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+<wps:CRS xmlns:wps=""http://www.opengis.net/wps/2.0""
+         xmlns:ows=""http://www.opengis.net/ows/2.0""
+         xmlns:xli=""http://www.w3.org/1999/xlink""
+         xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+         default=""true"">Test reference system</wps:CRS>";
+
+            var crs = _serializer.Deserialize<CoordinateReferenceSystem>(xml);
+            crs.IsDefault.Should().BeTrue();
+            crs.Uri.Should().Be("Test reference system");
+        }
+
+        [Fact]
+        public void DeserializeBoundingBoxData_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+<wps:BoundingBoxData xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+    <wps:Format mimeType=""test-1"" maximumMegabytes=""0"" default=""false"" />
+    <wps:Format mimeType=""test-2"" maximumMegabytes=""0"" default=""false"" />
+    <wps:SupportedCRS default=""true"">test-uri-1</wps:SupportedCRS>
+    <wps:SupportedCRS default=""false"">test-uri-1</wps:SupportedCRS>
+    <wps:SupportedCRS default=""false"">test-uri-1</wps:SupportedCRS>
+</wps:BoundingBoxData>";
+
+            var boundingBoxData = _serializer.Deserialize<BoundingBoxData>(xml);
+            boundingBoxData.SupportedCrs.Should().HaveCount(3);
+            boundingBoxData.Formats.Should().HaveCount(2);
+        }
+
     }
 }

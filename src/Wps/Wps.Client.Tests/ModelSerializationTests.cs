@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using System.Text.RegularExpressions;
 using Wps.Client.Models;
 using Wps.Client.Models.Execution;
@@ -208,7 +208,7 @@ namespace Wps.Client.Tests
                         }
                     }
                 },
-                Outputs = new []
+                Outputs = new[]
                 {
                     new DataOutput
                     {
@@ -219,6 +219,34 @@ namespace Wps.Client.Tests
             };
 
             var resultXml = _serializer.Serialize(executeRequest);
+            var trimmedResult = Regex.Replace(resultXml, @"\s+", string.Empty);
+            trimmedResult.Should().Be(trimmedExpectedXml);
+        }
+
+        [Fact]
+        public void SerializeBoundingBoxData_ValidObjectsGiven_ShouldPass()
+        {
+            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><wps:BoundingBoxData xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:wps=""http://www.opengis.net/wps/2.0""><wps:Format mimeType=""test"" maximumMegabytes=""0"" default=""false"" /><wps:Format mimeType=""test"" maximumMegabytes=""0"" default=""false"" /><wps:SupportedCRS default=""true"">test-uri-1</wps:SupportedCRS><wps:SupportedCRS default=""true"">test-uri-1</wps:SupportedCRS><wps:SupportedCRS default=""true"">test-uri-1</wps:SupportedCRS></wps:BoundingBoxData>";
+
+            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
+
+            var boundingBoxData = new BoundingBoxData
+            {
+                Formats = new[]
+                {
+                    new Format { MimeType = "test" },
+                    new Format { MimeType = "test" },
+                },
+                SupportedCrs = new[]
+                {
+                    new CoordinateReferenceSystem{ IsDefault = true, Uri = "test-uri-1" },
+                    new CoordinateReferenceSystem{ IsDefault = true, Uri = "test-uri-1" },
+                    new CoordinateReferenceSystem{ IsDefault = true, Uri = "test-uri-1" },
+                }
+            };
+
+            var resultXml = _serializer.Serialize(boundingBoxData);
             var trimmedResult = Regex.Replace(resultXml, @"\s+", string.Empty);
             trimmedResult.Should().Be(trimmedExpectedXml);
         }
