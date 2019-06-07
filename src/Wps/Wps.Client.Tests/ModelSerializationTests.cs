@@ -159,7 +159,7 @@ namespace Wps.Client.Tests
         [Fact]
         public void SerializeDataOutput_ValidOutputGiven_ShouldPass()
         {
-            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><wps:Output xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" transmission=""value"" id=""test-id"" xmlns:wps=""http://www.opengis.net/wps/2.0"" />";
+            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><wps:Output xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" mimeType=""test-mimetype"" encoding=""test-encoding"" schema=""test-schema"" transmission=""value"" id=""test-id"" xmlns:wps=""http://www.opengis.net/wps/2.0"" />";
 
             // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
@@ -167,7 +167,10 @@ namespace Wps.Client.Tests
             var dataInput = new DataOutput()
             {
                 Identifier = "test-id",
-                Transmission = TransmissionMode.Value
+                Transmission = TransmissionMode.Value,
+                Encoding = "test-encoding",
+                MimeType = "test-mimetype",
+                Schema = "test-schema"
             };
 
             var resultXml = _serializer.Serialize(dataInput);
