@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
+using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Threading;
 using Wps.Client.Models;
 using Wps.Client.Models.Execution;
 using Wps.Client.Models.Ows;
@@ -24,7 +26,7 @@ namespace Wps.Client.Tests
         {
             const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><wps:GetCapabilities xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" service=""WPS"" xmlns:wps=""http://www.opengis.net/wps/2.0"" />";
 
-            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
 
             var request = new GetCapabilitiesRequest()
@@ -47,7 +49,7 @@ namespace Wps.Client.Tests
                                            <ows:Identifier>id3</ows:Identifier>
                                          </wps:DescribeProcess>";
 
-            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
 
             var request = new DescribeProcessRequest()
@@ -69,7 +71,7 @@ namespace Wps.Client.Tests
                                              <wps:JobID>testJobId</wps:JobID>
                                          </wps:GetStatus>";
 
-            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
 
             var request = new GetStatusRequest
@@ -90,7 +92,7 @@ namespace Wps.Client.Tests
                                              <wps:JobID>testJobId</wps:JobID>
                                          </wps:GetResult>";
 
-            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
 
             var request = new GetResultRequest()
@@ -114,7 +116,7 @@ namespace Wps.Client.Tests
    <ows:Spacing>10</ows:Spacing>
 </ows:Range>";
 
-            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
 
             var range = new ValueRange
@@ -135,7 +137,7 @@ namespace Wps.Client.Tests
         {
             const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><Input id=""test-id"" xmlns=""http://www.opengis.net/wps/2.0""><wps:Data xmlns:wps=""http://www.opengis.net/wps/2.0""><LiteralValue xmlns=""http://www.opengis.net/wps/2.0"">105</LiteralValue></wps:Data><wps:Reference xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xli:href=""test"" schema=""test-schema"" xmlns:wps=""http://www.opengis.net/wps/2.0"" /></Input>";
 
-            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
 
             var dataInput = new DataInput
@@ -162,7 +164,7 @@ namespace Wps.Client.Tests
         {
             const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><wps:Output xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" mimeType=""test-mimetype"" encoding=""test-encoding"" schema=""test-schema"" transmission=""value"" id=""test-id"" xmlns:wps=""http://www.opengis.net/wps/2.0"" />";
 
-            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
 
             var dataInput = new DataOutput()
@@ -184,7 +186,7 @@ namespace Wps.Client.Tests
         {
             const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><wps:Execute xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" service=""WPS"" version=""2.0.0"" mode=""sync"" response=""document"" xmlns:wps=""http://www.opengis.net/wps/2.0""><ows:Identifier>org.n52.wps.server.algorithm.SimpleBufferAlgorithm</ows:Identifier><wps:Input id=""data""><wps:Reference xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xli:href=""http://geoprocessing.demo.52north.org:8080/geoserver/wfs?SERVICE=WFS&amp;VERSION=1.0.0&amp;REQUEST=GetFeature&amp;TYPENAME=topp:tasmania_roads&amp;SRS=EPSG:4326&amp;OUTPUTFORMAT=GML3"" schema=""http://schemas.opengis.net/gml/3.1.1/base/feature.xsd"" xmlns:wps=""http://www.opengis.net/wps/2.0"" /></wps:Input><wps:Input id=""width""><wps:Data><LiteralValue xmlns=""http://www.opengis.net/wps/2.0"">0.05</LiteralValue></wps:Data></wps:Input><wps:Output transmission=""value"" id=""result"" /></wps:Execute>";
 
-            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
 
             var executeRequest = new ExecuteRequest
@@ -232,7 +234,7 @@ namespace Wps.Client.Tests
         {
             const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><wps:BoundingBoxData xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:wps=""http://www.opengis.net/wps/2.0""><wps:Format mimeType=""test"" maximumMegabytes=""0"" default=""false"" /><wps:Format mimeType=""test"" maximumMegabytes=""0"" default=""false"" /><wps:SupportedCRS default=""true"">test-uri-1</wps:SupportedCRS><wps:SupportedCRS default=""true"">test-uri-1</wps:SupportedCRS><wps:SupportedCRS default=""true"">test-uri-1</wps:SupportedCRS></wps:BoundingBoxData>";
 
-            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
 
             var boundingBoxData = new BoundingBoxData
@@ -265,7 +267,7 @@ namespace Wps.Client.Tests
     <ows:UpperCorner xmlns:ows=""http://www.opengis.net/ows/2.0"">3.1 2.2 1.3</ows:UpperCorner>
 </BoundingBox>";
 
-            // Remove white spaces and new line characters. They do not change the actual (de)serialization of the XML.
+            // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
 
             var boundingBoxData = new BoundingBoxValue
