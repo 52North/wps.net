@@ -576,7 +576,7 @@ namespace Wps.Client.Tests
             const string xml = @"
 <wps:StatusInfo xsi:schemaLocation=""http://www.opengis.net/wps/2.0 http://schemas.opengis.net/wps/2.0/wps.xsd"" xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
     <wps:JobID>test-id</wps:JobID>
-    <wps:Status>test-status</wps:Status>
+    <wps:Status>Failed</wps:Status>
     <wps:ExpirationDate>2019-05-20T20:20:20Z</wps:ExpirationDate>
     <wps:EstimatedCompletion>2019-05-20T20:20:20Z</wps:EstimatedCompletion>
     <wps:NextPoll>2019-05-20T20:20:20Z</wps:NextPoll>
@@ -585,7 +585,7 @@ namespace Wps.Client.Tests
             var expectedDateTime = new DateTime(2019, 5, 20, 20, 20, 20);
 
             var response = _serializer.Deserialize<StatusInfo>(xml);
-            response.Status.Should().Be("test-status");
+            response.Status.Should().Be(JobStatus.Failed);
             response.JobId.Should().Be("test-id");
             response.EstimatedCompletion.Should().Be(expectedDateTime);
             response.NextPollDateTime.Should().Be(expectedDateTime);

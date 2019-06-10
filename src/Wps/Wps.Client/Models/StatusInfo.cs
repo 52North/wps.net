@@ -20,8 +20,8 @@ namespace Wps.Client.Models
         /// <summary>
         /// Well-known identifier describing the status of the job.
         /// </summary>
-        [XmlElement("Status", Namespace = ModelNamespaces.Wps)]
-        public string Status { get; set; }
+        [XmlElement("Status", Namespace = ModelNamespaces.Wps, Type = typeof(JobStatus))]
+        public JobStatus Status { get; set; }
 
         /// <summary>
         /// Date and time by which the job and its results will be no longer accessible.
