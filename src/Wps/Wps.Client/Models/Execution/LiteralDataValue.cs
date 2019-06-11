@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -24,7 +25,14 @@ namespace Wps.Client.Models.Execution
 
         public void WriteXml(XmlWriter writer)
         {
-            writer.WriteRaw(Value.ToString());
+            if (Value is IFormattable formattableValue)
+            {
+                writer.WriteRaw(formattableValue.ToString(string.Empty, CultureInfo.InvariantCulture));
+            }
+            else
+            {
+                writer.WriteRaw(Value.ToString());
+            }
         }
     }
 }
