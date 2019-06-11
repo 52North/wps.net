@@ -6,7 +6,7 @@ using Wps.Client.Utils;
 namespace Wps.Client.Models
 {
     [XmlRoot("Result", Namespace = ModelNamespaces.Wps)]
-    public class Result
+    public class Result<TData>
     {
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Wps.Client.Models
         /// Output item returned by a process execution.
         /// </summary>
         [XmlElement("Output", Namespace = ModelNamespaces.Wps)]
-        public ResultOutput[] Outputs { get; set; }
+        public ResultOutput<TData>[] Outputs { get; set; }
 
     }
 }

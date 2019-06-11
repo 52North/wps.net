@@ -597,18 +597,23 @@ namespace Wps.Client.Tests
         public void DeserializeResultOutput_ValidXmlGiven_ShouldPass()
         {
             const string xml = @"<wps:Output id=""result"" xsi:schemaLocation=""http://www.opengis.net/wps/2.0 http://schemas.opengis.net/wps/2.0/wps.xsd"" xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-                                     <wps:Data schema=""http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd"" mimeType=""application/vnd.google-earth.kml+xml"">
-                                         <kml:kml xmlns:kml=""http://earth.google.com/kml/2.1"" xmlns:xs=""http://www.w3.org/2001/XMLSchema"">
-                                         </kml:kml>
+                                     <wps:Data>
+                                        <int>123</int>
                                      </wps:Data>
-                                     <wps:Output></wps:Output>
+                                     <wps:Output id=""test"">
+                                        <wps:Data>
+                                            <int>321</int>
+                                        </wps:Data>
+                                     </wps:Output>
                                  </wps:Output>";
             var expectedDateTime = new DateTime(2019, 5, 20, 20, 20, 20);
 
-            var resultOutput = _serializer.Deserialize<ResultOutput>(xml);
-            resultOutput.Data.Should().NotBeNull();
+            var resultOutput = _serializer.Deserialize<ResultOutput<int>>(xml);
+            resultOutput.Data.Should().Be(123);
             resultOutput.Id.Should().Be("result");
-            resultOutput.Output.Should().NotBeNull();
+            resultOutput.Output.Id.Should().Be("test");
+            resultOutput.Output.Data.Should().Be(321);
+            resultOutput.Output.Output.Should().BeNull();
         }
 
         [Fact]
@@ -616,18 +621,17 @@ namespace Wps.Client.Tests
         {
             const string xml = @"
 <wps:Result xsi:schemaLocation=""http://www.opengis.net/wps/2.0 http://schemas.opengis.net/wps/2.0/wps.xsd"" xmlns:wps=""http://www.opengis.net/wps/2.0"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-    <wps:JobID>test-id</wps:JobID>
     <wps:Output id=""result"">
-        <wps:Data schema=""http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd"" mimeType=""application/vnd.google-earth.kml+xml"">
-            <kml:kml xmlns:kml=""http://earth.google.com/kml/2.1"" xmlns:xs=""http://www.w3.org/2001/XMLSchema"">
-            </kml:kml>
+        <wps:Data>
+            <int>123</int>
         </wps:Data>
     </wps:Output>
+    <wps:JobID>test-id</wps:JobID>
     <wps:ExpirationDate>2019-05-20T20:20:20Z</wps:ExpirationDate>
 </wps:Result>";
             var expectedExpirationDate = new DateTime(2019, 5, 20, 20, 20, 20);
 
-            var result = _serializer.Deserialize<Result>(xml);
+            var result = _serializer.Deserialize<Result<int>>(xml);
             result.ExpirationDate.Should().Be(expectedExpirationDate);
             result.JobId.Should().Be("test-id");
             result.Outputs.Should().HaveCount(1);

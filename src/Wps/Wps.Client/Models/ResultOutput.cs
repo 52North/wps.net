@@ -1,10 +1,13 @@
-﻿using System.Xml.Serialization;
+﻿using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+using Wps.Client.Services;
 using Wps.Client.Utils;
 
 namespace Wps.Client.Models
 {
     [XmlRoot("Output", Namespace = ModelNamespaces.Wps)]
-    public class ResultOutput
+    public class ResultOutput<TData> : IXmlSerializable
     {
 
         /// <summary>
@@ -17,13 +20,53 @@ namespace Wps.Client.Models
         /// The data provided by this output item.
         /// </summary>
         [XmlElement("Data", Namespace = ModelNamespaces.Wps)]
-        public object Data { get; set; }
+        public TData Data { get; set; }
 
         /// <summary>
         /// Nested output, child element.
         /// </summary>
         [XmlElement("Output", Namespace = ModelNamespaces.Wps)]
-        public ResultOutput Output { get; set; }
+        public ResultOutput<TData> Output { get; set; }
 
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public void ReadXml(XmlReader reader)
+        {
+            var serializer = new XmlSerializationService();
+            Id = reader.GetAttribute("id");
+
+            var subtreeReader = reader.ReadSubtree();
+            subtreeReader.MoveToContent();
+            while(subtreeReader.Read())
+            {
+                if (subtreeReader.NodeType == XmlNodeType.Element)
+                {
+                    if (subtreeReader.LocalName.Equals("Data"))
+                    {
+                        var content = subtreeReader.ReadInnerXml();
+                        Data = serializer.Deserialize<TData>(content);
+                    }
+
+                    if (subtreeReader.LocalName.Equals("Output"))
+                    {
+                        if(subtreeReader.Depth == 1)
+                        {
+                            var content = subtreeReader.ReadOuterXml();
+                            Output = serializer.Deserialize<ResultOutput<TData>>(content);
+                        }
+                    }
+                }
+            }
+
+            reader.Skip();
+        }
+
+        public void WriteXml(XmlWriter writer)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
