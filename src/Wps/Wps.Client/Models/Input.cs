@@ -34,7 +34,8 @@ namespace Wps.Client.Models
         /// The data that will be present in this input.
         /// </summary>
         [XmlElement("LiteralData", Type = typeof(LiteralData), Namespace = ModelNamespaces.Wps),
-         XmlElement("ComplexData", Type = typeof(ComplexData), Namespace = ModelNamespaces.Wps)]
+         XmlElement("ComplexData", Type = typeof(ComplexData), Namespace = ModelNamespaces.Wps),
+         XmlElement("BoundingBoxData", Type = typeof(BoundingBoxData), Namespace = ModelNamespaces.Wps)]
         public Data.Data Data { get; set; }
 
         /// <summary>
