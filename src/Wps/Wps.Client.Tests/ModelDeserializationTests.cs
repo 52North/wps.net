@@ -686,5 +686,39 @@ namespace Wps.Client.Tests
             boundingBoxData.Formats.Should().HaveCount(2);
         }
 
+
+
+        [Fact]
+        public void DeserializeOwsExceptionReport_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+<ows:ExceptionReport xmlns:ows=""http://www.opengis.net/ows/2.0"" lang=""en-US"" version=""2.0.0"">
+    <ows:Exception></ows:Exception>
+    <ows:Exception></ows:Exception>
+    <ows:Exception></ows:Exception>
+</ows:ExceptionReport>";
+
+            var report = _serializer.Deserialize<ExceptionReport>(xml);
+            report.Exceptions.Should().HaveCount(3);
+            report.Language.Should().Be("en-US");
+            report.Version.Should().Be("2.0.0");
+        }
+
+        [Fact]
+        public void DeserializeOwsException_ValidXmlGiven_ShouldPass()
+        {
+            const string xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+<ows:Exception xmlns:ows=""http://www.opengis.net/ows/2.0"" exceptionCode=""NoApplicableCode"" locator=""test locator"">
+    <ows:ExceptionText>There went something wrong with parsing the POST data: XML document structures must start and end within the same entity.</ows:ExceptionText>
+</ows:Exception>";
+
+            var exception = _serializer.Deserialize<OwsException>(xml);
+            exception.Code.Should().Be("NoApplicableCode");
+            exception.Locator.Should().Be("test locator");
+            exception.Message.Should()
+                .Be(
+                    "There went something wrong with parsing the POST data: XML document structures must start and end within the same entity.");
+        }
+
     }
 }
