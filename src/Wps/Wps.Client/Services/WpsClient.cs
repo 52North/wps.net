@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -30,7 +30,7 @@ namespace Wps.Client.Services
 
             var requestXml = _serializationService.Serialize(request);
             var response = await _httpClient.PostAsync(wpsUri,
-                new StringContent(requestXml, Encoding.UTF8));
+                new StringContent(requestXml, Encoding.UTF8, "text/xml"));
 
             var content = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
