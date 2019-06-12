@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wps:ProcessOfferings xmlns:wps="http://www.opengis.net/wps/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ows="http://www.opengis.net/ows/2.0" xsi:schemaLocation="http://www.opengis.net/wps/2.0 http://schemas.opengis.net/wps/2.0/wps.xsd">
+  <wps:ProcessOffering processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+    <wps:Process>
+      <ows:Title>Generates statistics for i.smap from raster map.</ows:Title>
+      <ows:Abstract>http://grass.osgeo.org/grass70/manuals/html70_user/i.gensigset.html</ows:Abstract>
+      <ows:Identifier>i.gensigset</ows:Identifier>
+      <wps:Input minOccurs="1" maxOccurs="1">
+        <ows:Title>Ground truth training map</ows:Title>
+        <ows:Identifier>trainingmap</ows:Identifier>
+        <wps:ComplexData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="image/tiff"/>
+          <ns:Format mimeType="image/geotiff"/>
+          <ns:Format mimeType="application/geotiff"/>
+          <ns:Format mimeType="application/x-geotiff"/>
+          <ns:Format mimeType="image/png"/>
+          <ns:Format mimeType="image/gif"/>
+          <ns:Format mimeType="image/jpeg"/>
+          <ns:Format mimeType="application/x-erdas-hfa"/>
+          <ns:Format mimeType="application/netcdf"/>
+          <ns:Format mimeType="application/x-netcdf"/>
+          <ns:Format mimeType="image/tiff" encoding="base64"/>
+          <ns:Format mimeType="application/geotiff" encoding="base64"/>
+          <ns:Format mimeType="application/x-geotiff" encoding="base64"/>
+          <ns:Format mimeType="image/png" encoding="base64"/>
+          <ns:Format mimeType="image/jpeg" encoding="base64"/>
+          <ns:Format mimeType="application/x-erdas-hfa" encoding="base64"/>
+          <ns:Format mimeType="application/x-netcdf" encoding="base64"/>
+        </wps:ComplexData>
+      </wps:Input>
+      <wps:Input minOccurs="1" maxOccurs="1">
+        <ows:Title>Name of input imagery group</ows:Title>
+        <ows:Identifier>group</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="string"/>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Input minOccurs="1" maxOccurs="1">
+        <ows:Title>Name of input imagery subgroup</ows:Title>
+        <ows:Identifier>subgroup</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="string"/>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Input minOccurs="1" maxOccurs="1">
+        <ows:Title>Name for output file containing result signatures</ows:Title>
+        <ows:Identifier>signaturefile</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="string"/>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Input minOccurs="0" maxOccurs="1">
+        <ows:Title>Maximum number of sub-signatures in any class</ows:Title>
+        <ows:Identifier>maxsig</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="integer"/>
+            <ows:DefaultValue>5</ows:DefaultValue>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Input minOccurs="0" maxOccurs="1">
+        <ows:Title>Resolution of the mapset in north-south direction in meters or degrees</ows:Title>
+        <ows:Abstract>This parameter defines the north-south resolution of the mapset in meter or degrees, which should be used to process the input and output raster data. To enable this setting, you need to specify north-south and east-west resolution.</ows:Abstract>
+        <ows:Identifier>grass_resolution_ns</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="float"/>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Input minOccurs="0" maxOccurs="1">
+        <ows:Title>Resolution of the mapset in east-west direction in meters or degrees</ows:Title>
+        <ows:Abstract>This parameter defines the east-west resolution of the mapset in meters or degrees, which should be used to process the input and output raster data.  To enable this setting, you need to specify north-south and east-west resolution.</ows:Abstract>
+        <ows:Identifier>grass_resolution_ew</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="float"/>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Input minOccurs="0" maxOccurs="1">
+        <ows:Title>Band to select for processing (default is all bands)</ows:Title>
+        <ows:Abstract>This parameter defines band number of the input raster files which should be processed. As default all bands are processed and used as single and multiple inputs for raster modules.</ows:Abstract>
+        <ows:Identifier>grass_band_number</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="integer"/>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Output>
+        <ows:Title>Module output on stdout</ows:Title>
+        <ows:Abstract>The output of the module written to stdout</ows:Abstract>
+        <ows:Identifier>stdout</ows:Identifier>
+        <wps:ComplexData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/plain" encoding="base64"/>
+        </wps:ComplexData>
+      </wps:Output>
+    </wps:Process>
+  </wps:ProcessOffering>
+  <wps:ProcessOffering processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+    <wps:Process>
+      <ows:Title>Generates statistics for i.maxlik from raster map.</ows:Title>
+      <ows:Abstract>http://grass.osgeo.org/grass70/manuals/html70_user/i.gensig.html</ows:Abstract>
+      <ows:Identifier>i.gensig</ows:Identifier>
+      <wps:Input minOccurs="1" maxOccurs="1">
+        <ows:Title>Ground truth training map</ows:Title>
+        <ows:Identifier>trainingmap</ows:Identifier>
+        <wps:ComplexData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="image/tiff"/>
+          <ns:Format mimeType="image/geotiff"/>
+          <ns:Format mimeType="application/geotiff"/>
+          <ns:Format mimeType="application/x-geotiff"/>
+          <ns:Format mimeType="image/png"/>
+          <ns:Format mimeType="image/gif"/>
+          <ns:Format mimeType="image/jpeg"/>
+          <ns:Format mimeType="application/x-erdas-hfa"/>
+          <ns:Format mimeType="application/netcdf"/>
+          <ns:Format mimeType="application/x-netcdf"/>
+          <ns:Format mimeType="image/tiff" encoding="base64"/>
+          <ns:Format mimeType="application/geotiff" encoding="base64"/>
+          <ns:Format mimeType="application/x-geotiff" encoding="base64"/>
+          <ns:Format mimeType="image/png" encoding="base64"/>
+          <ns:Format mimeType="image/jpeg" encoding="base64"/>
+          <ns:Format mimeType="application/x-erdas-hfa" encoding="base64"/>
+          <ns:Format mimeType="application/x-netcdf" encoding="base64"/>
+        </wps:ComplexData>
+      </wps:Input>
+      <wps:Input minOccurs="1" maxOccurs="1">
+        <ows:Title>Name of input imagery group</ows:Title>
+        <ows:Identifier>group</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="string"/>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Input minOccurs="1" maxOccurs="1">
+        <ows:Title>Name of input imagery subgroup</ows:Title>
+        <ows:Identifier>subgroup</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="string"/>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Input minOccurs="1" maxOccurs="1">
+        <ows:Title>Name for output file containing result signatures</ows:Title>
+        <ows:Identifier>signaturefile</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="string"/>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Input minOccurs="0" maxOccurs="1">
+        <ows:Title>Resolution of the mapset in north-south direction in meters or degrees</ows:Title>
+        <ows:Abstract>This parameter defines the north-south resolution of the mapset in meter or degrees, which should be used to process the input and output raster data. To enable this setting, you need to specify north-south and east-west resolution.</ows:Abstract>
+        <ows:Identifier>grass_resolution_ns</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="float"/>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Input minOccurs="0" maxOccurs="1">
+        <ows:Title>Resolution of the mapset in east-west direction in meters or degrees</ows:Title>
+        <ows:Abstract>This parameter defines the east-west resolution of the mapset in meters or degrees, which should be used to process the input and output raster data.  To enable this setting, you need to specify north-south and east-west resolution.</ows:Abstract>
+        <ows:Identifier>grass_resolution_ew</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="float"/>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Input minOccurs="0" maxOccurs="1">
+        <ows:Title>Band to select for processing (default is all bands)</ows:Title>
+        <ows:Abstract>This parameter defines band number of the input raster files which should be processed. As default all bands are processed and used as single and multiple inputs for raster modules.</ows:Abstract>
+        <ows:Identifier>grass_band_number</ows:Identifier>
+        <wps:LiteralData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/xml"/>
+          <LiteralDataDomain>
+            <ows:AnyValue/>
+            <ows:DataType ows:reference="integer"/>
+          </LiteralDataDomain>
+        </wps:LiteralData>
+      </wps:Input>
+      <wps:Output>
+        <ows:Title>Module output on stdout</ows:Title>
+        <ows:Abstract>The output of the module written to stdout</ows:Abstract>
+        <ows:Identifier>stdout</ows:Identifier>
+        <wps:ComplexData xmlns:ns="http://www.opengis.net/wps/2.0">
+          <ns:Format default="true" mimeType="text/plain"/>
+          <ns:Format mimeType="text/plain" encoding="base64"/>
+        </wps:ComplexData>
+      </wps:Output>
+    </wps:Process>
+  </wps:ProcessOffering>
+</wps:ProcessOfferings>

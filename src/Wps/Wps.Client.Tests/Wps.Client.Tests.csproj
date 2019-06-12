@@ -7,8 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="5.6.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0" />
+    <None Remove="Resources\ExceptionReport.xml" />
+    <None Remove="Resources\GetCapabilities.xml" />
+    <None Remove="Resources\ProcessOfferings.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ExceptionReport.xml" />
+    <EmbeddedResource Include="Resources\GetCapabilities.xml" />
+    <EmbeddedResource Include="Resources\ProcessOfferings.xml" />
+  </ItemGroup>
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>
