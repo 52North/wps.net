@@ -6,12 +6,8 @@ namespace Wps.Client.Models.Requests
 {
     [Serializable]
     [XmlRoot("GetCapabilities", Namespace = ModelNamespaces.Wps)]
-    public class GetCapabilitiesRequest
+    public class GetCapabilitiesRequest : RequestBase
     {
-        /// <summary>
-        /// The concerned service by the GetCapabilities request.
-        /// </summary>
-        [XmlAttribute("service", Namespace = ModelNamespaces.Wps)]
-        public string Service { get; set; } = "WPS";
+
     }
 }
