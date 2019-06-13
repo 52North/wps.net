@@ -25,13 +25,14 @@ namespace Wps.Client.Tests
          * Helpers
          */
 
-        private static HttpMessageHandler GetMockedMessageHandlerForResponse(string response, HttpStatusCode code = HttpStatusCode.OK)
+        private static HttpMessageHandler GetMockedMessageHandlerForResponse(string response, HttpStatusCode code = HttpStatusCode.OK, string expectedRequestContent = null)
         {
             var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
             handlerMock.Protected()
                 .Setup<Task<HttpResponseMessage>>(
                     "SendAsync",
-                    ItExpr.IsAny<HttpRequestMessage>(),
+                    expectedRequestContent == null ? ItExpr.IsAny<HttpRequestMessage>() : ItExpr.Is<HttpRequestMessage>(
+                        m => m.Content.ReadAsStringAsync().Result.Equals(expectedRequestContent)),
                     ItExpr.IsAny<CancellationToken>())
                 .ReturnsAsync(new HttpResponseMessage
                 {
@@ -164,6 +165,149 @@ namespace Wps.Client.Tests
             var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
 
             await Assert.ThrowsAsync<ArgumentNullException>(() => wpsClient.GetJobStatus(null, string.Empty));
+        }
+
+        /*
+         * GetRawResult Tests
+         */
+
+        [Fact]
+        public async Task GetRawResult_ValidRequestGiven_ShouldReturnResult()
+        {
+            const string expectedResultXml = "<wps:LiteralValue xmlns:wps=\"http://www.opengis.net/wps/2.0\" dataType=\"https://www.w3.org/2001/XMLSchema-datatypes#string\">150</wps:LiteralValue>";
+            
+            var request = new ExecuteRequest
+            {
+                Inputs = new[]
+                {
+                    new DataInput
+                    {
+                        Data = new LiteralDataValue{Value = "test"}
+                    }
+                },
+                ExecutionMode = ExecutionMode.Synchronous,
+                ResponseType = ResponseType.Raw
+            };
+
+            var expectedRequestXml = new XmlSerializationService().Serialize(request);
+
+            var wpsClient = new WpsClient(new HttpClient(GetMockedMessageHandlerForResponse(expectedResultXml, HttpStatusCode.OK, expectedRequestXml)), new XmlSerializationService());
+
+            var result = await wpsClient.GetRawResult(MockUri, request);
+            result.Should().Be(expectedResultXml);
+        }
+
+        [Fact]
+        public async Task GetRawResult_NullWpsUriGiven_ShouldThrowArgumentNullException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<ArgumentNullException>(() => wpsClient.GetRawResult(null, new ExecuteRequest()));
+        }
+
+        [Fact]
+        public async Task GetRawResult_NullRequestGiven_ShouldThrowArgumentNullException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<ArgumentNullException>(() => wpsClient.GetRawResult(MockUri, null));
+        }
+
+        [Fact]
+        public async Task GetRawResult_DocumentedResponseTypeGiven_ShouldThrowInvalidOperationException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<InvalidOperationException>(() => wpsClient.GetRawResult(MockUri, new ExecuteRequest
+            {
+                ResponseType = ResponseType.Document
+            }));
+        }
+
+        [Fact]
+        public async Task GetRawResult_AsynchronousExecutionModeGiven_ShouldThrowInvalidOperationException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<InvalidOperationException>(() => wpsClient.GetRawResult(MockUri, new ExecuteRequest
+            {
+                ExecutionMode = ExecutionMode.Asynchronous
+            }));
+        }
+        /*
+         * GetDocumentedResult Tests
+         */
+
+        [Theory]
+        [EmbeddedResourceData("Wps.Client.Tests/Resources/SynchronousDocumentedResult.xml")]
+        public async Task GetDocumentedResult_ValidRequestGiven_ShouldReturnResult(string expectedHttpResponse)
+        {
+            var request = new ExecuteRequest
+            {
+                Identifier = "org.n52.javaps.test.EchoProcess",
+                Inputs = new[]
+                {
+                    new DataInput
+                    {
+                        Data = new LiteralDataValue{ Value = "test" }
+                    }
+                },
+                Outputs = new []
+                {
+                    new DataOutput
+                    {
+                        MimeType = "text/xml"
+                    }
+                },
+                ExecutionMode = ExecutionMode.Synchronous,
+                ResponseType = ResponseType.Document
+            };
+
+            var expectedRequestXml = new XmlSerializationService().Serialize(request);
+
+            var wpsClient = new WpsClient(new HttpClient(GetMockedMessageHandlerForResponse(expectedHttpResponse, HttpStatusCode.OK, expectedRequestXml)), new XmlSerializationService());
+
+            var result = await wpsClient.GetDocumentedResult<LiteralDataValue>(MockUri, request);
+            result.Should().NotBeNull();
+            result.Outputs.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public async Task GetDocumentedResult_NullWpsUriGiven_ShouldThrowArgumentNullException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<ArgumentNullException>(() => wpsClient.GetDocumentedResult<object>(null, new ExecuteRequest()));
+        }
+
+        [Fact]
+        public async Task GetDocumentedResult_NullRequestGiven_ShouldThrowArgumentNullException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<ArgumentNullException>(() => wpsClient.GetDocumentedResult<object>(MockUri, null));
+        }
+
+        [Fact]
+        public async Task GetDocumentedResult_RawResponseTypeGiven_ShouldThrowInvalidOperationException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<InvalidOperationException>(() => wpsClient.GetDocumentedResult<object>(MockUri, new ExecuteRequest
+            {
+                ResponseType = ResponseType.Raw
+            }));
+        }
+
+        [Fact]
+        public async Task GetDocumentedResult_SynchronousExecutionModeGiven_ShouldThrowInvalidOperationException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<InvalidOperationException>(() => wpsClient.GetDocumentedResult<object>(MockUri, new ExecuteRequest
+            {
+                ExecutionMode = ExecutionMode.Synchronous
+            }));
         }
 
     }

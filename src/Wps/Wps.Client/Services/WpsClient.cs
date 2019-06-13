@@ -99,19 +99,30 @@ namespace Wps.Client.Services
             return result;
         }
 
-        public Task<TResult> GetRawResultAs<TResult>(string wpsUri, ExecuteRequest request)
+        public async Task<string> GetRawResult(string wpsUri, ExecuteRequest request)
         {
-            throw new NotImplementedException();
+            if (wpsUri == null) throw new ArgumentNullException(nameof(wpsUri));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            if (request.ExecutionMode != ExecutionMode.Synchronous) throw new InvalidOperationException("Cannot execute request as auto or asynchronous in a synchronous session.");
+            if (request.ResponseType != ResponseType.Raw) throw new InvalidOperationException($"Raw response type is required for the request in function {nameof(GetRawResult)}.");
+
+            var content = await GetRequestResult(wpsUri, request);
+            return content;
         }
 
-        public Task<string> GetRawResult(string wpsUri, ExecuteRequest request)
+        public async Task<Result<TData>> GetDocumentedResult<TData>(string wpsUri, ExecuteRequest request)
         {
-            throw new NotImplementedException();
-        }
+            if (wpsUri == null) throw new ArgumentNullException(nameof(wpsUri));
+            if (request == null) throw new ArgumentNullException(nameof(request));
 
-        public Task<Result<TData>> GetDocumentedResult<TData>(string wpsUri, ExecuteRequest request)
-        {
-            throw new NotImplementedException();
+            if (request.ExecutionMode != ExecutionMode.Synchronous) throw new InvalidOperationException("Cannot execute request as auto or asynchronous in a synchronous session.");
+            if (request.ResponseType != ResponseType.Document) throw new InvalidOperationException($"Document response type is required for the request in function {nameof(GetDocumentedResult)}.");
+
+            var content = await GetRequestResult(wpsUri, request);
+            var result = _serializationService.Deserialize<Result<TData>>(content);
+
+            return result;
         }
 
         public void Dispose()

@@ -42,15 +42,6 @@ namespace Wps.Client.Services
         /// <summary>
         /// Get the raw result of a synchronously executed request.
         /// </summary>
-        /// <typeparam name="TResult">The type of the result</typeparam>
-        /// <param name="wpsUri">The address pointing to the WPS server.</param>
-        /// <param name="request">The execution request to be sent to the WPS server.</param>
-        /// <returns>The result deserialized as <see cref="TResult"/>.</returns>
-        Task<TResult> GetRawResultAs<TResult>(string wpsUri, ExecuteRequest request);
-
-        /// <summary>
-        /// Get the raw result of a synchronously executed request.
-        /// </summary>
         /// <param name="wpsUri">The address pointing to the WPS server.</param>
         /// <param name="request">The execution request to be sent to the WPS server.</param>
         /// <returns>The raw string result.</returns>
