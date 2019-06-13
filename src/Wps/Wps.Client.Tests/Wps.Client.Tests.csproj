@@ -9,12 +9,14 @@
   <ItemGroup>
     <None Remove="Resources\ExceptionReport.xml" />
     <None Remove="Resources\GetCapabilities.xml" />
+    <None Remove="Resources\JobStatus.xml" />
     <None Remove="Resources\ProcessOfferings.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\ExceptionReport.xml" />
     <EmbeddedResource Include="Resources\GetCapabilities.xml" />
+    <EmbeddedResource Include="Resources\JobStatus.xml" />
     <EmbeddedResource Include="Resources\ProcessOfferings.xml" />
   </ItemGroup>
 

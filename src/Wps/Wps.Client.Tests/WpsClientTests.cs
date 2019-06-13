@@ -134,6 +134,38 @@ namespace Wps.Client.Tests
             await Assert.ThrowsAsync<InvalidOperationException>(() => wpsClient.DescribeProcess(MockUri, new string[0]));
         }
 
+        /*
+         * GetJobStatus Tests
+         */
+
+        [Theory]
+        [EmbeddedResourceData("Wps.Client.Tests/Resources/JobStatus.xml")]
+        public async Task GetStatus_ValidJobIdGiven_ShouldReturnJobStatus(string httpClientResponseXml)
+        {
+            const string expectedJobId = "FB6DD4B0-A2BB-11E3-A5E2-0800200C9A66";
+            var wpsClient = new WpsClient(new HttpClient(GetMockedMessageHandlerForResponse(httpClientResponseXml)), new XmlSerializationService());
+
+            var status = await wpsClient.GetJobStatus(MockUri, expectedJobId);
+            status.Should().NotBeNull();
+            status.JobId.Should().Be(expectedJobId);
+        }
+
+        [Fact]
+        public async Task GetStatus_NullJobIdGiven_ShouldThrowArgumentNullException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<ArgumentNullException>(() => wpsClient.GetJobStatus(MockUri, null));
+        }
+
+        [Fact]
+        public async Task GetStatus_NullWpsUriGiven_ShouldThrowArgumentNullException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<ArgumentNullException>(() => wpsClient.GetJobStatus(null, string.Empty));
+        }
+
     }
 }
 

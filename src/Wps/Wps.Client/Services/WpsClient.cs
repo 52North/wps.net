@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -83,9 +83,20 @@ namespace Wps.Client.Services
             return result;
         }
 
-        public Task<StatusInfo> GetJobStatus(string wpsUri, string jobId)
+        public async Task<StatusInfo> GetJobStatus(string wpsUri, string jobId)
         {
-            throw new NotImplementedException();
+            if (wpsUri == null) throw new ArgumentNullException(nameof(wpsUri));
+            if (jobId == null) throw new ArgumentNullException(nameof(jobId));
+
+            var request = new GetStatusRequest
+            {
+                JobId = jobId
+            };
+
+            var content = await GetRequestResult(wpsUri, request);
+            var result = _serializationService.Deserialize<StatusInfo>(content);
+
+            return result;
         }
 
         public Task<TResult> GetRawResultAs<TResult>(string wpsUri, ExecuteRequest request)
