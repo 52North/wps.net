@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -51,13 +50,13 @@ namespace Wps.Client.Models.Execution
 
             if (LowerCornerPoints != null)
             {
-                var content = StringHelper.CustomFormatJoin(CultureInfo.InvariantCulture, " ", LowerCornerPoints);
+                var content = string.Join(" ", LowerCornerPoints);
                 writer.WriteElementString("ows", "LowerCorner", ModelNamespaces.Ows, content);
             }
 
             if (UpperCornerPoints != null)
             {
-                var content = StringHelper.CustomFormatJoin(CultureInfo.InvariantCulture, " ", UpperCornerPoints);
+                var content = string.Join(" ", UpperCornerPoints);
                 writer.WriteElementString("ows", "UpperCorner", ModelNamespaces.Ows, content);
             }
         }

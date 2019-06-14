@@ -21,17 +21,19 @@ namespace Wps.Client.Tests
             _serializer = serializer;
         }
 
-        [Fact]
-        public void SerializeGetCapabilitiesRequest_ValidRequestGiven_ShouldPass()
+        [Theory]
+        [EmbeddedResourceData("Wps.Client.Tests/Resources/Requests/GetCapabilities.xml")]
+        public void SerializeGetCapabilitiesRequest_ValidRequestGiven_ShouldPass(string expectedXml)
         {
-            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><wps:GetCapabilities xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" service=""WPS"" xmlns:wps=""http://www.opengis.net/wps/2.0"" />";
-
             // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
 
             var request = new GetCapabilitiesRequest()
             {
-                Service = "WPS"
+                AcceptedFormats = new[] { "text/xml", "text/plain" },
+                AcceptedVersions = new[] { "1.0.0", "2.0.0" },
+                Sections = new[] { "section 1", "section 2" },
+                UpdateSequence = "update sequence"
             };
 
             var resultXml = _serializer.Serialize(request);
@@ -150,7 +152,7 @@ namespace Wps.Client.Tests
                 },
                 Data = new LiteralDataValue
                 {
-                    Value = 105
+                    Value = 105.ToString(CultureInfo.InvariantCulture)
                 }
             };
 
@@ -210,7 +212,7 @@ namespace Wps.Client.Tests
                         Identifier = "width",
                         Data = new LiteralDataValue
                         {
-                            Value = 0.05f
+                            Value = 0.05f.ToString(CultureInfo.InvariantCulture)
                         }
                     }
                 },
@@ -257,14 +259,16 @@ namespace Wps.Client.Tests
             trimmedResult.Should().Be(trimmedExpectedXml);
         }
 
-        [Fact]
-        public void SerializeBoundingBoxValue_ValidObjectsGiven_ShouldPass()
+        [Theory]
+        [InlineData("crs-uri", 3, new[] { 1.1, 2.2, 3.3 }, new[] { 3.1, 2.2, 1.3 })]
+        public void SerializeBoundingBoxValue_ValidObjectsGiven_ShouldPass(string crsUri, int dimensionCount, double[] lCornerPoints, double[] rCornerPoints)
         {
-            const string expectedXml = @"
-<?xml version=""1.0"" encoding=""utf-8""?>
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("de-DE");
+
+            var expectedXml = $@"<?xml version=""1.0"" encoding=""utf-8""?>
 <BoundingBox p1:crs=""crs-uri"" p1:dimensions=""3"" xmlns:p1=""http://www.opengis.net/ows/2.0"" xmlns=""http://www.opengis.net/ows/2.0"">
-    <ows:LowerCorner xmlns:ows=""http://www.opengis.net/ows/2.0"">1.1 2.2 3.3</ows:LowerCorner>
-    <ows:UpperCorner xmlns:ows=""http://www.opengis.net/ows/2.0"">3.1 2.2 1.3</ows:UpperCorner>
+    <ows:LowerCorner xmlns:ows=""http://www.opengis.net/ows/2.0"">{string.Join(" ", lCornerPoints)}</ows:LowerCorner>
+    <ows:UpperCorner xmlns:ows=""http://www.opengis.net/ows/2.0"">{string.Join(" ", rCornerPoints)}</ows:UpperCorner>
 </BoundingBox>";
 
             // Remove white spaces and new line characters for XML comparison.
@@ -272,10 +276,10 @@ namespace Wps.Client.Tests
 
             var boundingBoxData = new BoundingBoxValue
             {
-                CrsUri = "crs-uri",
-                DimensionCount = 3,
-                LowerCornerPoints = new[] { 1.1, 2.2, 3.3 },
-                UpperCornerPoints = new[] { 3.1, 2.2, 1.3 },
+                CrsUri = crsUri,
+                DimensionCount = dimensionCount,
+                LowerCornerPoints = lCornerPoints,
+                UpperCornerPoints = rCornerPoints,
             };
 
             var resultXml = _serializer.Serialize(boundingBoxData);

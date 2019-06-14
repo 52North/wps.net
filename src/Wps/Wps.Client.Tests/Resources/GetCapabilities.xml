@@ -1,0 +1,1185 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wps:Capabilities xmlns:wps="http://www.opengis.net/wps/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ows="http://www.opengis.net/ows/2.0" xmlns:xlin="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.opengis.net/wps/2.0 http://schemas.opengis.net/wps/2.0/wps.xsd" service="WPS" version="2.0.0">
+  <ows:ServiceIdentification>
+    <ows:Title>52°North WPS 4.0.0-beta.4-SNAPSHOT</ows:Title>
+    <ows:Abstract>Service based on the 52°North implementation of WPS 1.0.0 and 2.0.0</ows:Abstract>
+    <ows:Keywords>
+      <ows:Keyword>WPS</ows:Keyword>
+      <ows:Keyword>geospatial</ows:Keyword>
+      <ows:Keyword>geoprocessing</ows:Keyword>
+    </ows:Keywords>
+    <ows:ServiceType>WPS</ows:ServiceType>
+    <ows:ServiceTypeVersion>1.0.0</ows:ServiceTypeVersion>
+    <ows:ServiceTypeVersion>2.0.0</ows:ServiceTypeVersion>
+    <ows:Fees>NONE</ows:Fees>
+    <ows:AccessConstraints>NONE</ows:AccessConstraints>
+  </ows:ServiceIdentification>
+  <ows:ServiceProvider>
+    <ows:ProviderName>52°North GmbH</ows:ProviderName>
+    <ows:ProviderSite xlin:href="http://52north.org/"/>
+    <ows:ServiceContact>
+      <ows:IndividualName>Benjamin Pross</ows:IndividualName>
+      <ows:ContactInfo>
+        <ows:Address>
+          <ows:DeliveryPoint>Martin-Luther-King-Weg 24</ows:DeliveryPoint>
+          <ows:City>Muenster</ows:City>
+          <ows:AdministrativeArea>NW</ows:AdministrativeArea>
+          <ows:PostalCode>48155</ows:PostalCode>
+          <ows:Country>Germany</ows:Country>
+          <ows:ElectronicMailAddress>b.pross @52north.org</ows:ElectronicMailAddress>
+        </ows:Address>
+      </ows:ContactInfo>
+    </ows:ServiceContact>
+  </ows:ServiceProvider>
+  <ows:OperationsMetadata>
+    <ows:Operation name="GetCapabilities">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?"/>
+          <ows:Post xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService"/>
+        </ows:HTTP>
+      </ows:DCP>
+    </ows:Operation>
+    <ows:Operation name="DescribeProcess">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?"/>
+          <ows:Post xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService"/>
+        </ows:HTTP>
+      </ows:DCP>
+    </ows:Operation>
+    <ows:Operation name="Execute">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Post xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService"/>
+        </ows:HTTP>
+      </ows:DCP>
+    </ows:Operation>
+    <ows:Operation name="GetStatus">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?"/>
+          <ows:Post xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService"/>
+        </ows:HTTP>
+      </ows:DCP>
+    </ows:Operation>
+    <ows:Operation name="GetResult">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?"/>
+          <ows:Post xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService"/>
+        </ows:HTTP>
+      </ows:DCP>
+    </ows:Operation>
+  </ows:OperationsMetadata>
+  <ows:Languages>
+    <ows:Language>en-US</ows:Language>
+  </ows:Languages>
+  <wps:Contents>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute" outputTransmission="value reference">
+      <ows:Title>R Annotation Validation</ows:Title>
+      <ows:Identifier>org.n52.wps.server.algorithm.r.AnnotationValidation</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=org.n52.wps.server.algorithm.r.AnnotationValidation"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.1.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>org.n52.wps.server.algorithm.JTSConvexHullAlgorithm</ows:Title>
+      <ows:Identifier>org.n52.wps.server.algorithm.JTSConvexHullAlgorithm</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=org.n52.wps.server.algorithm.JTSConvexHullAlgorithm"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.1.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>org.n52.wps.server.algorithm.SimpleBufferAlgorithm</ows:Title>
+      <ows:Identifier>org.n52.wps.server.algorithm.SimpleBufferAlgorithm</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=org.n52.wps.server.algorithm.SimpleBufferAlgorithm"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>org.n52.wps.server.algorithm.convexhull.ConvexHullAlgorithm</ows:Title>
+      <ows:Identifier>org.n52.wps.server.algorithm.convexhull.ConvexHullAlgorithm</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=org.n52.wps.server.algorithm.convexhull.ConvexHullAlgorithm"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>org.n52.wps.server.algorithm.intersection.IntersectionAlgorithm</ows:Title>
+      <ows:Identifier>org.n52.wps.server.algorithm.intersection.IntersectionAlgorithm</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=org.n52.wps.server.algorithm.intersection.IntersectionAlgorithm"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>org.n52.wps.server.algorithm.test.DummyTestClass</ows:Title>
+      <ows:Identifier>org.n52.wps.server.algorithm.test.DummyTestClass</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=org.n52.wps.server.algorithm.test.DummyTestClass"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Echo process</ows:Title>
+      <ows:Identifier>org.n52.wps.server.algorithm.test.EchoProcess</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=org.n52.wps.server.algorithm.test.EchoProcess"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>org.n52.wps.server.algorithm.test.LongRunningDummyTestClass</ows:Title>
+      <ows:Identifier>org.n52.wps.server.algorithm.test.LongRunningDummyTestClass</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=org.n52.wps.server.algorithm.test.LongRunningDummyTestClass"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.1.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>for testing multiple binary inputs by reference</ows:Title>
+      <ows:Identifier>org.n52.wps.server.algorithm.test.MultiReferenceBinaryInputAlgorithm</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=org.n52.wps.server.algorithm.test.MultiReferenceBinaryInputAlgorithm"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.1.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>for testing multiple inputs by reference</ows:Title>
+      <ows:Identifier>org.n52.wps.server.algorithm.test.MultiReferenceInputAlgorithm</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=org.n52.wps.server.algorithm.test.MultiReferenceInputAlgorithm"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>org.n52.wps.server.algorithm.test.MultipleComplexInAndOutputsDummyTestClass</ows:Title>
+      <ows:Identifier>org.n52.wps.server.algorithm.test.MultipleComplexInAndOutputsDummyTestClass</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=org.n52.wps.server.algorithm.test.MultipleComplexInAndOutputsDummyTestClass"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>6S - Second Simulation of Satellite Signal in the Solar Spectrum.</ows:Title>
+      <ows:Identifier>i.atcorr</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.atcorr"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes biomass growth, precursor of crop yield calculation.</ows:Title>
+      <ows:Identifier>i.biomass</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.biomass"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Canonical components analysis (CCA) program for image processing.</ows:Title>
+      <ows:Identifier>i.cca</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.cca"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>The resulting signature file is used as input for i.maxlik, to generate an unsupervised image classification.</ows:Title>
+      <ows:Identifier>i.cluster</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.cluster"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Actual evapotranspiration for diurnal period (Bastiaanssen, 1995).</ows:Title>
+      <ows:Identifier>i.eb.eta</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.eb.eta"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes evaporative fraction (Bastiaanssen, 1995) and root zone soil moisture (Makin, Molden and Bastiaanssen, 2001).</ows:Title>
+      <ows:Identifier>i.eb.evapfr</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.eb.evapfr"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Soil heat flux approximation (Bastiaanssen, 1995).</ows:Title>
+      <ows:Identifier>i.eb.soilheatflux</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.eb.soilheatflux"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes emissivity from NDVI, generic method for sparse land.</ows:Title>
+      <ows:Identifier>i.emissivity</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.emissivity"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Fast Fourier Transform (FFT) for image processing.</ows:Title>
+      <ows:Identifier>i.fft</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.fft"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates statistics for i.maxlik from raster map.</ows:Title>
+      <ows:Identifier>i.gensig</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.gensig"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates statistics for i.smap from raster map.</ows:Title>
+      <ows:Identifier>i.gensigset</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.gensigset"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Transforms raster maps from HIS (Hue-Intensity-Saturation) color space to RGB (Red-Green-Blue) color space.</ows:Title>
+      <ows:Identifier>i.his.rgb</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.his.rgb"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Inverse Fast Fourier Transform (IFFT) for image processing.</ows:Title>
+      <ows:Identifier>i.ifft</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.ifft"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Performs Landsat TM/ETM+ Automatic Cloud Cover Assessment (ACCA).</ows:Title>
+      <ows:Identifier>i.landsat.acca</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.landsat.acca"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates top-of-atmosphere radiance or reflectance and temperature for Landsat MSS/TM/ETM+/OLI</ows:Title>
+      <ows:Identifier>i.landsat.toar</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.landsat.toar"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Classification is based on the spectral signature information generated by either i.cluster, i.class, or i.gensig.</ows:Title>
+      <ows:Identifier>i.maxlik</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.maxlik"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Extracts quality control parameters from Modis QC layers.</ows:Title>
+      <ows:Identifier>i.modis.qc</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.modis.qc"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Principal components analysis (PCA) for image processing.</ows:Title>
+      <ows:Identifier>i.pca</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.pca"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Rectifies an image by computing a coordinate transformation for each pixel in the image based on the control points.</ows:Title>
+      <ows:Identifier>i.rectify</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.rectify"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Transforms raster maps from RGB (Red-Green-Blue) color space to HIS (Hue-Intensity-Saturation) color space.</ows:Title>
+      <ows:Identifier>i.rgb.his</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.rgb.his"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Performs contextual image classification using sequential maximum a posteriori (SMAP) estimation.</ows:Title>
+      <ows:Identifier>i.smap</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.smap"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Targets an imagery group to a GRASS location and mapset.</ows:Title>
+      <ows:Identifier>i.target</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.target"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Uses red and nir bands mostly, and some indices require additional bands.</ows:Title>
+      <ows:Identifier>i.vi</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.vi"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Zero-crossing "edge detection" raster function for image processing.</ows:Title>
+      <ows:Identifier>i.zc</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=i.zc"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>It assumes a cartesian coordinate system</ows:Title>
+      <ows:Identifier>m.cogo</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=m.cogo"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Measures the lengths and areas of features.</ows:Title>
+      <ows:Identifier>m.measure</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=m.measure"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates watershed subbasins raster map.</ows:Title>
+      <ows:Identifier>r.basins.fill</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.basins.fill"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Compares bit patterns with a raster map.</ows:Title>
+      <ows:Identifier>r.bitpattern</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.bitpattern"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Takes vector stream data, transforms it to raster and subtracts depth from the output DEM.</ows:Title>
+      <ows:Identifier>r.carve</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.carve"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Manages category values and labels associated with user-specified raster map layers.</ows:Title>
+      <ows:Identifier>r.category</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.category"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a raster map containing concentric rings around a given point.</ows:Title>
+      <ows:Identifier>r.circle</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.circle"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Recategorizes data in a raster map by grouping cells that form physically discrete areas into unique categories.</ows:Title>
+      <ows:Identifier>r.clump</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.clump"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Tabulates the mutual occurrence (coincidence) of categories for two raster map layers.</ows:Title>
+      <ows:Identifier>r.coin</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.coin"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Compresses and decompresses raster maps.</ows:Title>
+      <ows:Identifier>r.compress</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.compress"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Produces a vector map of specified contours from a raster map.</ows:Title>
+      <ows:Identifier>r.contour</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.contour"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a raster map showing the cumulative cost of moving between different geographic locations on an input raster map whose cell category values represent cost.</ows:Title>
+      <ows:Identifier>r.cost</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.cost"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Outputs a covariance/correlation matrix for user-specified raster map layer(s).</ows:Title>
+      <ows:Identifier>r.covar</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.covar"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a cross product of the category values from multiple raster map layers.</ows:Title>
+      <ows:Identifier>r.cross</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.cross"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Prints terse list of category values found in a raster map layer.</ows:Title>
+      <ows:Identifier>r.describe</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.describe"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Locates the closest points between objects in two raster maps.</ows:Title>
+      <ows:Identifier>r.distance</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.distance"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Traces a flow through an elevation model or cost surface on a raster map.</ows:Title>
+      <ows:Identifier>r.drain</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.drain"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Filters and generates a depressionless elevation map and a flow direction map from a given elevation raster map.</ows:Title>
+      <ows:Identifier>r.fill.dir</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.fill.dir"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes flowlines, flowpath lengths, and flowaccumulation (contributing areas) from a elevation raster map.</ows:Title>
+      <ows:Identifier>r.flow</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.flow"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates a raster map containing distances to nearest raster features.</ows:Title>
+      <ows:Identifier>r.grow.distance</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.grow.distance"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Numerical calculation program for transient, confined and unconfined groundwater flow in two dimensions.</ows:Title>
+      <ows:Identifier>r.gwflow</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.gwflow"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates red, green and blue raster map layers combining hue, intensity and saturation (HIS) values from user-specified input raster map layers.</ows:Title>
+      <ows:Identifier>r.his</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.his"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes horizon angle height from a digital elevation model. The module has two different modes of operation:  1. Computes the entire horizon around a single point whose coordinates are given with the 'coord' option. The horizon height (in radians). 2. Computes one or more raster maps of the horizon height in a single direction.  The input for this is the angle (in degrees), which is measured  counterclockwise with east=0, north=90 etc. The output is the horizon height in radians.</ows:Title>
+      <ows:Identifier>r.horizon</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.horizon"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates error matrix and kappa parameter for accuracy assessment of classification result.</ows:Title>
+      <ows:Identifier>r.kappa</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.kappa"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Fills lake at given point to given level.</ows:Title>
+      <ows:Identifier>r.lake</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.lake"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates contrast weighted edge density index on a raster map</ows:Title>
+      <ows:Identifier>r.li.cwed</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.cwed"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates dominance's diversity index on a raster map</ows:Title>
+      <ows:Identifier>r.li.dominance</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.dominance"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates edge density index on a raster map, using a 4 neighbour algorithm</ows:Title>
+      <ows:Identifier>r.li.edgedensity</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.edgedensity"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates mean pixel attribute index on a raster map</ows:Title>
+      <ows:Identifier>r.li.mpa</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.mpa"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates mean patch size index on a raster map, using a 4 neighbour algorithm</ows:Title>
+      <ows:Identifier>r.li.mps</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.mps"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates coefficient of variation of patch area on a raster map</ows:Title>
+      <ows:Identifier>r.li.padcv</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.padcv"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates range of patch area size on a raster map</ows:Title>
+      <ows:Identifier>r.li.padrange</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.padrange"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates standard deviation of patch area a raster map</ows:Title>
+      <ows:Identifier>r.li.padsd</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.padsd"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates patch density index on a raster map, using a 4 neighbour algorithm</ows:Title>
+      <ows:Identifier>r.li.patchdensity</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.patchdensity"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates patch number index on a raster map, using a 4 neighbour algorithm.</ows:Title>
+      <ows:Identifier>r.li.patchnum</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.patchnum"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates richness index on a raster map</ows:Title>
+      <ows:Identifier>r.li.richness</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.richness"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates Shannon's diversity index on a raster map</ows:Title>
+      <ows:Identifier>r.li.shannon</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.shannon"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates shape index on a raster map</ows:Title>
+      <ows:Identifier>r.li.shape</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.shape"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates Simpson's diversity index on a raster map</ows:Title>
+      <ows:Identifier>r.li.simpson</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.li.simpson"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Line-of-sight raster analysis program.</ows:Title>
+      <ows:Identifier>r.los</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.los"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Raster map calculator.</ows:Title>
+      <ows:Identifier>r.mapcalc</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.mapcalc"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Performs raster map matrix filter.</ows:Title>
+      <ows:Identifier>r.mfilter</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.mfilter"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Finds the mode of values in a cover map within areas assigned the same category value in a user-specified base map.</ows:Title>
+      <ows:Identifier>r.mode</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.mode"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Makes each cell category value a function of the category values assigned to the cells around it, and stores new cell values in an output raster map layer.</ows:Title>
+      <ows:Identifier>r.neighbors</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.neighbors"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Manages NULL-values of given raster map.</ows:Title>
+      <ows:Identifier>r.null</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.null"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Uses a multi-scale approach by taking fitting quadratic parameters to any size window (via least squares).</ows:Title>
+      <ows:Identifier>r.param.scale</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.param.scale"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a composite raster map layer by using known category values from one (or more) map layer(s) to fill in areas of "no data" in another map layer.</ows:Title>
+      <ows:Identifier>r.patch</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.patch"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Outputs the raster map layer values lying on user-defined line(s).</ows:Title>
+      <ows:Identifier>r.profile</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.profile"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Re-projects a raster map from given location to the current location.</ows:Title>
+      <ows:Identifier>r.proj</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.proj"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Produces the quantization file for a floating-point map.</ows:Title>
+      <ows:Identifier>r.quant</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.quant"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Compute quantiles using two passes.</ows:Title>
+      <ows:Identifier>r.quantile</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.quantile"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a raster map layer and vector point map containing randomly located points.</ows:Title>
+      <ows:Identifier>r.random</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.random"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates random cell values with spatial dependence.</ows:Title>
+      <ows:Identifier>r.random.cells</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.random.cells"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates random surface(s) with spatial dependence.</ows:Title>
+      <ows:Identifier>r.random.surface</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.random.surface"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a new raster map whose category values are based upon a reclassification of the categories in an existing raster map.</ows:Title>
+      <ows:Identifier>r.reclass</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.reclass"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Recodes categorical raster maps.</ows:Title>
+      <ows:Identifier>r.recode</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.recode"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Sets the boundary definitions for a raster map.</ows:Title>
+      <ows:Identifier>r.region</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.region"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates linear regression from two raster maps: y = a + b*x.</ows:Title>
+      <ows:Identifier>r.regression.line</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.regression.line"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Reports statistics for raster maps.</ows:Title>
+      <ows:Identifier>r.report</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.report"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Performs bilinear or bicubic spline interpolation with Tykhonov regularization.</ows:Title>
+      <ows:Identifier>r.resamp.bspline</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.resamp.bspline"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Resamples raster map layers using an analytic kernel.</ows:Title>
+      <ows:Identifier>r.resamp.filter</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.resamp.filter"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Resamples raster map to a finer grid using interpolation.</ows:Title>
+      <ows:Identifier>r.resamp.interp</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.resamp.interp"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Reinterpolates and optionally computes topographic analysis from input raster map to a new raster map (possibly with different resolution) using regularized spline with tension and smoothing.</ows:Title>
+      <ows:Identifier>r.resamp.rst</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.resamp.rst"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Resamples raster map layers to a coarser grid using aggregation.</ows:Title>
+      <ows:Identifier>r.resamp.stats</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.resamp.stats"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>GRASS raster map layer data resampling capability.</ows:Title>
+      <ows:Identifier>r.resample</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.resample"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Rescales the range of category values in a raster map layer.</ows:Title>
+      <ows:Identifier>r.rescale</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.rescale"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Rescales histogram equalized the range of category values in a raster map layer.</ows:Title>
+      <ows:Identifier>r.rescale.eq</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.rescale.eq"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates three, or four raster map layers showing the base (perpendicular) rate of spread (ROS), the maximum (forward) ROS, the direction of the maximum ROS, and optionally the maximum potential spotting distance for fire spread simulation.</ows:Title>
+      <ows:Identifier>r.ros</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.ros"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Makes each output cell value a function of the values assigned to the corresponding cells in the input raster map layers.</ows:Title>
+      <ows:Identifier>r.series</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.series"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Sediment transport and erosion/deposition simulation using path sampling method (SIMWE).</ows:Title>
+      <ows:Identifier>r.sim.sediment</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.sim.sediment"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Overland flow hydrologic simulation using path sampling method (SIMWE).</ows:Title>
+      <ows:Identifier>r.sim.water</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.sim.water"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Aspect is calculated counterclockwise from east.</ows:Title>
+      <ows:Identifier>r.slope.aspect</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.slope.aspect"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Numerical calculation program for transient, confined and unconfined solute transport in two dimensions</ows:Title>
+      <ows:Identifier>r.solute.transport</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.solute.transport"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates a raster map of the cumulative time of spread, given raster maps containing the rates of spread (ROS), the ROS directions and the spread origins. It optionally produces raster maps to contain backlink UTM coordinates for tracing spread paths. Usable for fire spread simulations.</ows:Title>
+      <ows:Identifier>r.spread</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.spread"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Recursively traces the least cost path backwards to cells from which the cumulative cost was determined.</ows:Title>
+      <ows:Identifier>r.spreadpath</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.spreadpath"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates category or object oriented statistics.</ows:Title>
+      <ows:Identifier>r.statistics</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.statistics"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates area statistics for raster map.</ows:Title>
+      <ows:Identifier>r.stats</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.stats"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes direct (beam), diffuse and reflected solar irradiation raster maps for given day, latitude, surface and atmospheric conditions. Solar parameters (e.g. sunrise, sunset times, declination, extraterrestrial irradiance, daylight length) are saved in the map history file. Alternatively, a local time can be specified to compute solar incidence angle and/or irradiance raster maps. The shadowing effect of the topography is optionally incorporated.</ows:Title>
+      <ows:Identifier>r.sun</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.sun"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Either exact sun position (A) is specified, or date/time to calculate the sun position (B) by r.sunmask itself.</ows:Title>
+      <ows:Identifier>r.sunmask</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.sunmask"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Allows creation and/or modification of raster map layer support files.</ows:Title>
+      <ows:Identifier>r.support</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.support"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Update raster map statistics</ows:Title>
+      <ows:Identifier>r.support.stats</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.support.stats"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Prints estimation of surface area for raster map.</ows:Title>
+      <ows:Identifier>r.surf.area</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.surf.area"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates surface raster map from rasterized contours.</ows:Title>
+      <ows:Identifier>r.surf.contour</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.surf.contour"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a fractal surface of a given fractal dimension.</ows:Title>
+      <ows:Identifier>r.surf.fractal</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.surf.fractal"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Mean and standard deviation of gaussian deviates can be expressed by the user.</ows:Title>
+      <ows:Identifier>r.surf.gauss</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.surf.gauss"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Surface interpolation utility for raster map.</ows:Title>
+      <ows:Identifier>r.surf.idw</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.surf.idw"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Surface generation program.</ows:Title>
+      <ows:Identifier>r.surf.idw2</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.surf.idw2"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Produces a raster surface map of uniform random deviates with defined range.</ows:Title>
+      <ows:Identifier>r.surf.random</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.surf.random"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Flow computation for massive grids (float version).</ows:Title>
+      <ows:Identifier>r.terraflow</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.terraflow"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generate images with textural features from a raster map.</ows:Title>
+      <ows:Identifier>r.texture</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.texture"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Thins non-zero cells that denote linear features in a raster map layer.</ows:Title>
+      <ows:Identifier>r.thin</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.thin"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Print/add/remove a timestamp for a raster map.</ows:Title>
+      <ows:Identifier>r.timestamp</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.timestamp"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Converts 2D raster map slices to one 3D raster volume map.</ows:Title>
+      <ows:Identifier>r.to.rast3</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.to.rast3"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a 3D volume map based on 2D elevation and value raster maps.</ows:Title>
+      <ows:Identifier>r.to.rast3elev</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.to.rast3elev"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Converts a raster map into a vector map.</ows:Title>
+      <ows:Identifier>r.to.vect</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.to.vect"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a topographic index raster map from an elevation raster map.</ows:Title>
+      <ows:Identifier>r.topidx</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.topidx"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Simulates TOPMODEL which is a physically based hydrologic model.</ows:Title>
+      <ows:Identifier>r.topmodel</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.topmodel"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Outputs raster map layer values lying along user defined transect line(s).</ows:Title>
+      <ows:Identifier>r.transect</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.transect"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates univariate statistics from the non-null cells of a raster map.</ows:Title>
+      <ows:Identifier>r.univar</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.univar"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes USLE Soil Erodibility Factor (K).</ows:Title>
+      <ows:Identifier>r.uslek</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.uslek"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes USLE R factor, Rainfall erosivity index.</ows:Title>
+      <ows:Identifier>r.usler</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.usler"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Optionally produces a GRASS vector points map containing the calculated centroids of these clumps.</ows:Title>
+      <ows:Identifier>r.volume</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.volume"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes anisotropic cumulative cost of moving between different geographic locations on an input elevation raster map whose cell category values represent elevation combined with an input raster map layer whose cell values represent friction cost.</ows:Title>
+      <ows:Identifier>r.walk</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.walk"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates watershed basins from a drainage direction map.</ows:Title>
+      <ows:Identifier>r.water.outlet</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.water.outlet"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates hydrological parameters and RUSLE factors.</ows:Title>
+      <ows:Identifier>r.watershed</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r.watershed"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Numerical calculation program for transient, confined groundwater flow in three dimensions.</ows:Title>
+      <ows:Identifier>r3.gwflow</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r3.gwflow"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Outputs basic information about a user-specified 3D raster map layer.</ows:Title>
+      <ows:Identifier>r3.info</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r3.info"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Raster map calculator.</ows:Title>
+      <ows:Identifier>r3.mapcalc</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r3.mapcalc"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Establishes the current working 3D raster mask.</ows:Title>
+      <ows:Identifier>r3.mask</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r3.mask"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Explicitly create the 3D NULL-value bitmap file.</ows:Title>
+      <ows:Identifier>r3.null</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r3.null"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates volume statistics for 3D raster maps.</ows:Title>
+      <ows:Identifier>r3.stats</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r3.stats"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Print/add/remove a timestamp for a 3D raster map</ows:Title>
+      <ows:Identifier>r3.timestamp</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r3.timestamp"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Converts 3D raster maps to 2D raster maps</ows:Title>
+      <ows:Identifier>r3.to.rast</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r3.to.rast"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Calculates univariate statistics from the non-null 3d cells of a raster3d map.</ows:Title>
+      <ows:Identifier>r3.univar</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=r3.univar"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a buffer around vector features of given type.</ows:Title>
+      <ows:Identifier>v.buffer</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.buffer"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Optionaly also checks for topological errors.</ows:Title>
+      <ows:Identifier>v.build</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.build"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Builds polylines from lines or boundaries.</ows:Title>
+      <ows:Identifier>v.build.polylines</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.build.polylines"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Attaches, deletes or reports vector categories to map geometry.</ows:Title>
+      <ows:Identifier>v.category</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.category"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Classifies attribute data, e.g. for thematic mapping</ows:Title>
+      <ows:Identifier>v.class</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.class"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Imports older versions of GRASS vector maps.</ows:Title>
+      <ows:Identifier>v.convert</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.convert"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Prints/sets DB connection for a vector map to attribute table.</ows:Title>
+      <ows:Identifier>v.db.connect</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.db.connect"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Prints vector map attributes.</ows:Title>
+      <ows:Identifier>v.db.select</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.db.select"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a Delaunay triangulation from an input vector map containing points or centroids.</ows:Title>
+      <ows:Identifier>v.delaunay</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.delaunay"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Finds the nearest element in vector map 'to' for elements in vector map 'from'.</ows:Title>
+      <ows:Identifier>v.distance</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.distance"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Converts 2D vector features to 3D by sampling of elevation raster map.</ows:Title>
+      <ows:Identifier>v.drape</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.drape"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Edits a vector map, allows adding, deleting and modifying selected vector features.</ows:Title>
+      <ows:Identifier>v.edit</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.edit"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Selects vector features from an existing vector map and creates a new vector map containing only the selected features.</ows:Title>
+      <ows:Identifier>v.extract</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.extract"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Optionally the height can be derived from sampling of elevation raster map.</ows:Title>
+      <ows:Identifier>v.extrude</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.extrude"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Performs vector based generalization.</ows:Title>
+      <ows:Identifier>v.generalize</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.generalize"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Produces a 2D/3D convex hull for a given vector map.</ows:Title>
+      <ows:Identifier>v.hull</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.hull"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Randomly partition points into test/train sets.</ows:Title>
+      <ows:Identifier>v.kcv</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.kcv"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Density is computed using a moving kernel. Optionally generates a vector density map on a vector network.</ows:Title>
+      <ows:Identifier>v.kernel</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.kernel"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates paint labels for a vector map from attached attributes.</ows:Title>
+      <ows:Identifier>v.label</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.label"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Correction of the v.lidar.growing output. It is the last of the three algorithms for LIDAR filtering.</ows:Title>
+      <ows:Identifier>v.lidar.correction</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.lidar.correction"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Detects the object's edges from a LIDAR data set.</ows:Title>
+      <ows:Identifier>v.lidar.edgedetection</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.lidar.edgedetection"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Building contour determination and Region Growing algorithm for determining the building inside</ows:Title>
+      <ows:Identifier>v.lidar.growing</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.lidar.growing"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a linear reference system.</ows:Title>
+      <ows:Identifier>v.lrs.create</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.lrs.create"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates stationing from input lines, and linear reference system.</ows:Title>
+      <ows:Identifier>v.lrs.label</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.lrs.label"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates points/segments from input lines, linear reference system and positions read from stdin or a file.</ows:Title>
+      <ows:Identifier>v.lrs.segment</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.lrs.segment"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Finds line id and real km+offset for given points in vector map using linear reference system.</ows:Title>
+      <ows:Identifier>v.lrs.where</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.lrs.where"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a vector map of a user-defined grid.</ows:Title>
+      <ows:Identifier>v.mkgrid</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.mkgrid"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Makes each cell value a function of the attribute values assigned to the vector points or centroids around it, and stores new cell values in an output raster map.</ows:Title>
+      <ows:Identifier>v.neighbors</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.neighbors"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Performs network maintenance.</ows:Title>
+      <ows:Identifier>v.net</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>center node must be opened (costs >= 0). Costs of center node are used in calculation</ows:Title>
+      <ows:Identifier>v.net.alloc</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.alloc"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes the shortest path between all pairs of nodes in the network.</ows:Title>
+      <ows:Identifier>v.net.allpairs</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.allpairs"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes bridges and articulation points in the network.</ows:Title>
+      <ows:Identifier>v.net.bridge</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.bridge"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes degree, centrality, betweeness, closeness and eigenvector centrality measures in the network.</ows:Title>
+      <ows:Identifier>v.net.centrality</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.centrality"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes strongly and weakly connected components in the network.</ows:Title>
+      <ows:Identifier>v.net.components</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.components"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes vertex connectivity between two sets of nodes in the network.</ows:Title>
+      <ows:Identifier>v.net.connectivity</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.connectivity"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Finds the shortest paths from each 'from' point to the nearest 'to' feature and various information about this relation are uploaded to the attribute table.</ows:Title>
+      <ows:Identifier>v.net.distance</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.distance"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes the maximum flow between two sets of nodes in the network.</ows:Title>
+      <ows:Identifier>v.net.flow</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.flow"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Splits net to bands between cost isolines (direction from centre). Centre node must be opened (costs >= 0). Costs of centre node are used in calculation.</ows:Title>
+      <ows:Identifier>v.net.iso</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.iso"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Finds shortest path on vector network.</ows:Title>
+      <ows:Identifier>v.net.path</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.path"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Note that TSP is NP-hard, heuristic algorithm is used by this module and created cycle may be sub optimal</ows:Title>
+      <ows:Identifier>v.net.salesman</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.salesman"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Computes minimum spanning tree for the network.</ows:Title>
+      <ows:Identifier>v.net.spanningtree</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.spanningtree"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Note that 'Minimum Steiner Tree' problem is NP-hard and heuristic algorithm is used in this module so the result may be sub optimal.</ows:Title>
+      <ows:Identifier>v.net.steiner</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.steiner"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Finds shortest path using timetables.</ows:Title>
+      <ows:Identifier>v.net.timetable</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.timetable"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Performs visibility graph construction.</ows:Title>
+      <ows:Identifier>v.net.visibility</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.net.visibility"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Tests for normality for vector points.</ows:Title>
+      <ows:Identifier>v.normal</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.normal"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Removes outliers from vector point data.</ows:Title>
+      <ows:Identifier>v.outlier</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.outlier"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Overlays two vector maps.</ows:Title>
+      <ows:Identifier>v.overlay</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.overlay"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates parallel line to input vector lines.</ows:Title>
+      <ows:Identifier>v.parallel</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.parallel"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a new vector map by combining other vector maps.</ows:Title>
+      <ows:Identifier>v.patch</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.patch"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Random location perturbations of vector points.</ows:Title>
+      <ows:Identifier>v.perturb</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.perturb"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Re-projects a vector map from one location to the current location.</ows:Title>
+      <ows:Identifier>v.proj</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.proj"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Indices for quadrat counts of sites lists.</ows:Title>
+      <ows:Identifier>v.qcount</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.qcount"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Generates random 2D/3D vector points.</ows:Title>
+      <ows:Identifier>v.random</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.random"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Changes vector category values for an existing vector map according to results of SQL queries or a value in attribute table column.</ows:Title>
+      <ows:Identifier>v.reclass</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.reclass"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Samples a raster map at vector point locations.</ows:Title>
+      <ows:Identifier>v.sample</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.sample"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates points/segments from input vector lines and positions.</ows:Title>
+      <ows:Identifier>v.segment</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.segment"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Selects features from vector map (A) by features from other vector map (B).</ows:Title>
+      <ows:Identifier>v.select</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.select"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Splits vector lines to shorter segments.</ows:Title>
+      <ows:Identifier>v.split</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.split"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Updates vector map metadata.</ows:Title>
+      <ows:Identifier>v.support</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.support"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Performs bicubic or bilinear spline interpolation with Tykhonov regularization.</ows:Title>
+      <ows:Identifier>v.surf.bspline</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.surf.bspline"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Provides surface interpolation from vector point data by Inverse Distance Squared Weighting.</ows:Title>
+      <ows:Identifier>v.surf.idw</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.surf.idw"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Spatial approximation and topographic analysis from given point or isoline data in vector format to floating point raster format using regularized spline with tension.</ows:Title>
+      <ows:Identifier>v.surf.rst</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.surf.rst"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Performs transformation of 2D vector features to 3D.</ows:Title>
+      <ows:Identifier>v.to.3d</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.to.3d"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Populates attribute values from vector features.</ows:Title>
+      <ows:Identifier>v.to.db</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.to.db"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates points along input lines in new vector map with 2 layers.</ows:Title>
+      <ows:Identifier>v.to.points</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.to.points"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Converts (rasterize) a vector map into a raster map.</ows:Title>
+      <ows:Identifier>v.to.rast</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.to.rast"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Converts a vector map (only points) into a 3D raster map.</ows:Title>
+      <ows:Identifier>v.to.rast3</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.to.rast3"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Performs an affine transformation (shift, scale and rotate) on vector map.</ows:Title>
+      <ows:Identifier>v.transform</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.transform"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Changes type of vector features.</ows:Title>
+      <ows:Identifier>v.type</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.type"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Variance and standard deviation is calculated only for points if specified.</ows:Title>
+      <ows:Identifier>v.univar</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.univar"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Interpolates point data to a 3D raster map using regularized spline with tension (RST) algorithm.</ows:Title>
+      <ows:Identifier>v.vol.rst</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.vol.rst"/>
+    </wps:ProcessSummary>
+    <wps:ProcessSummary processVersion="1.0.0" jobControlOptions="sync-execute async-execute" outputTransmission="value reference">
+      <ows:Title>Creates a Voronoi diagram in current region from an input vector map containing points or centroids.</ows:Title>
+      <ows:Identifier>v.voronoi</ows:Identifier>
+      <ows:Metadata xlin:role="Process description" xlin:href="http://geoprocessing.demo.52north.org:80/wps/WebProcessingService?service=WPS&amp;request=DescribeProcess&amp;version=2.0.0&amp;identifier=v.voronoi"/>
+    </wps:ProcessSummary>
+  </wps:Contents>
+</wps:Capabilities>
