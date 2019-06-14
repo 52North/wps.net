@@ -21,17 +21,19 @@ namespace Wps.Client.Tests
             _serializer = serializer;
         }
 
-        [Fact]
-        public void SerializeGetCapabilitiesRequest_ValidRequestGiven_ShouldPass()
+        [Theory]
+        [EmbeddedResourceData("Wps.Client.Tests/Resources/Requests/GetCapabilities.xml")]
+        public void SerializeGetCapabilitiesRequest_ValidRequestGiven_ShouldPass(string expectedXml)
         {
-            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><wps:GetCapabilities xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" service=""WPS"" xmlns:wps=""http://www.opengis.net/wps/2.0"" />";
-
             // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
 
             var request = new GetCapabilitiesRequest()
             {
-                Service = "WPS"
+                AcceptedFormats = new[] { "text/xml", "text/plain" },
+                AcceptedVersions = new[] { "1.0.0", "2.0.0" },
+                Sections = new[] { "section 1", "section 2" },
+                UpdateSequence = "update sequence"
             };
 
             var resultXml = _serializer.Serialize(request);

@@ -2,7 +2,7 @@
 
 namespace Wps.Client.Models.Requests
 {
-    public abstract class RequestBase
+    public abstract class RequestBase : Request
     {
 
         /// <summary>

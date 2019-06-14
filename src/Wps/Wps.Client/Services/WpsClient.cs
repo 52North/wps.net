@@ -23,7 +23,7 @@ namespace Wps.Client.Services
             _serializationService = serializationService;
         }
 
-        private async Task<string> GetRequestResult(string wpsUri, RequestBase request)
+        private async Task<string> GetRequestResult(string wpsUri, Request request)
         {
             if (wpsUri == null) throw new ArgumentNullException(nameof(wpsUri));
             if (request == null) throw new ArgumentNullException(nameof(request));
