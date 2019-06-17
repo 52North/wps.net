@@ -14,6 +14,8 @@ namespace Wps.Client.Services
     public class WpsClient : IWpsClient, IDisposable
     {
 
+        private const string RequestMimeType = "text/xml";
+
         private readonly HttpClient _httpClient;
         private readonly IXmlSerializer _serializationService;
 
@@ -30,7 +32,7 @@ namespace Wps.Client.Services
 
             var requestXml = _serializationService.Serialize(request);
             var response = await _httpClient.PostAsync(wpsUri,
-                new StringContent(requestXml, Encoding.UTF8, "text/xml"));
+                new StringContent(requestXml, Encoding.UTF8, RequestMimeType));
 
             var content = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
@@ -81,6 +83,25 @@ namespace Wps.Client.Services
             var result = _serializationService.Deserialize<ProcessOfferingCollection>(content);
 
             return result;
+        }
+
+        public async Task<ExceptionReport> GetExceptionForRequest(string wpsUri, Request request)
+        {
+            if (wpsUri == null) throw new ArgumentNullException(nameof(wpsUri));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            var requestXml = _serializationService.Serialize(request);
+            var response = await _httpClient.PostAsync(wpsUri,
+                new StringContent(requestXml, Encoding.UTF8, RequestMimeType));
+
+            var content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException($"Expected an ExceptionReport but the answer from the server was successful, {response.StatusCode}.");
+            }
+
+            var exceptionReport = _serializationService.Deserialize<ExceptionReport>(content);
+            return exceptionReport;
         }
 
         public async Task<StatusInfo> GetJobStatus(string wpsUri, string jobId)
