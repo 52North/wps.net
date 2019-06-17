@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Wps.Client.Models;
+using Wps.Client.Models.Data;
 using Wps.Client.Models.Execution;
 using Wps.Client.Models.Ows;
 using Wps.Client.Models.Requests;
 using Wps.Client.Services;
 using Xunit;
+using Xunit.Sdk;
 
 namespace Wps.Client.Tests
 {
@@ -368,6 +370,82 @@ namespace Wps.Client.Tests
             var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
 
             await Assert.ThrowsAsync<InvalidOperationException>(() => wpsClient.GetDocumentedResult<object>(MockUri, new ExecuteRequest
+            {
+                ExecutionMode = ExecutionMode.Synchronous
+            }));
+        }
+
+        /*
+         * GetDocumentedResult Tests
+         */
+
+        [Theory]
+        [EmbeddedResourceData("Wps.Client.Tests/Resources/Responses/AcceptedJobStatus.xml")]
+        public async Task AsyncGetDocumentedResult_ValidRequestGiven_ShouldReturnResult(string expectedHttpResponse)
+        {
+            var request = new ExecuteRequest
+            {
+                Identifier = "org.n52.javaps.test.EchoProcess",
+                Inputs = new[]
+                {
+                    new DataInput
+                    {
+                        Data = new LiteralDataValue{ Value = "test" }
+                    }
+                },
+                Outputs = new []
+                {
+                    new DataOutput
+                    {
+                        MimeType = "text/xml"
+                    }
+                },
+                ExecutionMode = ExecutionMode.Asynchronous,
+                ResponseType = ResponseType.Document
+            };
+
+            var expectedRequestXml = new XmlSerializationService().Serialize(request);
+
+            var wpsClient = new WpsClient(new HttpClient(GetMockedMessageHandlerForResponse(expectedHttpResponse, HttpStatusCode.OK, expectedRequestXml)), new XmlSerializationService());
+
+            var session = await wpsClient.AsyncGetDocumentResultAs<LiteralDataValue>(MockUri, request);
+            session.Should().NotBeNull();
+            session.JobId.Should().Be("test-job-id");
+        }
+
+        [Fact]
+        public async Task AsyncGetDocumentedResult_NullWpsUriGiven_ShouldThrowArgumentNullException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<ArgumentNullException>(() => wpsClient.AsyncGetDocumentResultAs<Data>(null, new ExecuteRequest()));
+        }
+
+        [Fact]
+        public async Task AsyncGetDocumentedResult_NullRequestGiven_ShouldThrowArgumentNullException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<ArgumentNullException>(() => wpsClient.AsyncGetDocumentResultAs<Data>(MockUri, null));
+        }
+
+        [Fact]
+        public async Task AsyncGetDocumentedResult_RawResponseTypeGiven_ShouldThrowInvalidOperationException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<InvalidOperationException>(() => wpsClient.GetDocumentedResult<Data>(MockUri, new ExecuteRequest
+            {
+                ResponseType = ResponseType.Raw
+            }));
+        }
+
+        [Fact]
+        public async Task AsyncGetDocumentedResult_SynchronousExecutionModeGiven_ShouldThrowInvalidOperationException()
+        {
+            var wpsClient = new WpsClient(new HttpClient(), new XmlSerializationService());
+
+            await Assert.ThrowsAsync<InvalidOperationException>(() => wpsClient.GetDocumentedResult<Data>(MockUri, new ExecuteRequest
             {
                 ExecutionMode = ExecutionMode.Synchronous
             }));

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -160,6 +160,26 @@ namespace Wps.Client.Services
             var result = _serializationService.Deserialize<Result<TData>>(content);
 
             return result;
+        }
+
+        public async Task<Session<TData>> AsyncGetDocumentResultAs<TData>(string wpsUri, ExecuteRequest request)
+        {
+            if (wpsUri == null) throw new ArgumentNullException(nameof(wpsUri));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            if (request.ExecutionMode != ExecutionMode.Asynchronous) throw new InvalidOperationException("Cannot execute request as auto or synchronous in an asynchronous session.");
+            if (request.ResponseType != ResponseType.Document) throw new InvalidOperationException($"Document response type is required for the request in function {nameof(AsyncGetDocumentResultAs)}.");
+
+            var content = await GetRequestResult(wpsUri, request);
+            var result = _serializationService.Deserialize<StatusInfo>(content);
+
+            if (result.Status == JobStatus.Accepted || result.Status == JobStatus.Running)
+            {
+                var session = new Session<TData>(this, wpsUri, result.JobId);
+                return session;
+            }
+
+            throw new Exception($"The execution request could not be started. (Response status: {result.Status})");
         }
 
         public void Dispose()

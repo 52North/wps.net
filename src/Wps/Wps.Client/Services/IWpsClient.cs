@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Wps.Client.Models;
 using Wps.Client.Models.Ows;
@@ -74,6 +74,15 @@ namespace Wps.Client.Services
         /// <param name="request">The execution request to be sent to the WPS server.</param>
         /// <returns>The document containing additional information about the result and the output data.</returns>
         Task<Result<TData>> GetDocumentedResult<TData>(string wpsUri, ExecuteRequest request);
+
+        /// <summary>
+        /// Get the documented result of an asynchronously executed request.
+        /// </summary>
+        /// <typeparam name="TData">The type of the data included in the result.</typeparam>
+        /// <param name="wpsUri">The address pointing to the WPS server.</param>
+        /// <param name="request">The execution request to be sent to the WPS server.</param>
+        /// <returns>A session containing the events raised when different actions occur at every poll.</returns>
+        Task<Session<TData>> AsyncGetDocumentResultAs<TData>(string wpsUri, ExecuteRequest request);
 
     }
 }
