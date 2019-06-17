@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+using System;
+using System.Threading.Tasks;
 using Wps.Client.Models;
 using Wps.Client.Models.Requests;
 using Wps.Client.Models.Responses;
@@ -38,6 +39,15 @@ namespace Wps.Client.Services
         /// <param name="jobId">The id of the job to be checked.</param>
         /// <returns>Detailed information about the job status.</returns>
         Task<StatusInfo> GetJobStatus(string wpsUri, string jobId);
+
+        /// <summary>
+        /// Get the result of an asynchronously executed job.
+        /// </summary>
+        /// <typeparam name="TData">The type of the data included in the result.</typeparam>
+        /// <param name="wpsUri">The address pointing to the WPS server.</param>
+        /// <param name="jobId">The id of the job to be whose result should be fetched.</param>
+        /// <returns>The document containing additional information about the result and the output data.</returns>
+        Task<Result<TData>> GetResult<TData>(string wpsUri, string jobId);
 
         /// <summary>
         /// Get the raw result of a synchronously executed request.
