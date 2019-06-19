@@ -12,6 +12,8 @@
     <None Remove="Resources\JobStatus.xml" />
     <None Remove="Resources\ProcessOfferings.xml" />
     <None Remove="Resources\Requests\GetCapabilities.xml" />
+    <None Remove="Resources\Responses\AcceptedJobStatus.xml" />
+    <None Remove="Resources\Responses\Result.xml" />
     <None Remove="Resources\SynchronousDocumentedResult.xml" />
   </ItemGroup>
 
@@ -21,6 +23,8 @@
     <EmbeddedResource Include="Resources\JobStatus.xml" />
     <EmbeddedResource Include="Resources\ProcessOfferings.xml" />
     <EmbeddedResource Include="Resources\Requests\GetCapabilities.xml" />
+    <EmbeddedResource Include="Resources\Responses\AcceptedJobStatus.xml" />
+    <EmbeddedResource Include="Resources\Responses\Result.xml" />
     <EmbeddedResource Include="Resources\SynchronousDocumentedResult.xml" />
   </ItemGroup>
 

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wps:Result xmlns:wps="http://www.opengis.net/wps/2.0" xmlns:ows="http://www.opengis.net/ows/2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wps/2.0 http://schemas.opengis.net/wps/2.0/wps.xsd">
+  <wps:JobID>6b3ef43a-ed8d-4063-8c65-e1171687f256</wps:JobID>
+  <wps:ExpirationDate>2019-06-17T14:17:53.910549Z</wps:ExpirationDate>
+  <wps:Output id="literalOutput">
+    <wps:Data mimeType="text/xml" encoding="UTF-8">
+      <wps:LiteralValue xmlns:wps="http://www.opengis.net/wps/2.0" dataType="https://www.w3.org/2001/XMLSchema-datatypes#string">150</wps:LiteralValue>
+    </wps:Data>
+  </wps:Output>
+</wps:Result>
