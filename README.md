@@ -22,11 +22,11 @@ Its purpose is mainly to allow users to integrate the WPS standard in their prog
 
 You can get the package from NuGet.
 
-### dotnet CLI
+### .NET CLI
 
 ```dotnet add package WPS.NET```
 
-### PowerShell
+### Packet Manager
 
 ```Install-Package WPS.NET```
 
