@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wps.Client", "Wps.Client\Wps.Client.csproj", "{1D689A04-5629-484C-91F9-A904F923CC5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wps.Client.Tests", "Wps.Client.Tests\Wps.Client.Tests.csproj", "{61ECB279-6288-48DE-BE3B-75A65EB04BFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D689A04-5629-484C-91F9-A904F923CC5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D689A04-5629-484C-91F9-A904F923CC5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D689A04-5629-484C-91F9-A904F923CC5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D689A04-5629-484C-91F9-A904F923CC5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61ECB279-6288-48DE-BE3B-75A65EB04BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61ECB279-6288-48DE-BE3B-75A65EB04BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61ECB279-6288-48DE-BE3B-75A65EB04BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61ECB279-6288-48DE-BE3B-75A65EB04BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B9B52D4-8EB1-487A-8C29-CB56077E923C}
+	EndGlobalSection
+EndGlobal

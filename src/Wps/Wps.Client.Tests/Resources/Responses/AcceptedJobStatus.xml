@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<wps:StatusInfo xmlns:wps="http://www.opengis.net/wps/2.0">
+  <wps:JobID>test-job-id</wps:JobID>
+  <wps:Status>Accepted</wps:Status>
+</wps:StatusInfo>
