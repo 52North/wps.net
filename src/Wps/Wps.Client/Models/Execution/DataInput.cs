@@ -10,6 +10,10 @@ namespace Wps.Client.Models.Execution
     public class DataInput : IXmlSerializable
     {
 
+        public string MimeType { get; set; }
+        public string Encoding { get; set; }
+        public string Schema { get; set; }
+
         public string Identifier { get; set; }
         public object Data { get; set; }
         public ResourceReference Reference { get; set; }
@@ -30,6 +34,9 @@ namespace Wps.Client.Models.Execution
             var xmlSerializer = new XmlSerializationService();
 
             writer.WriteAttributeString("id", Identifier);
+            if (!string.IsNullOrEmpty(MimeType)) writer.WriteAttributeString("mimeType", MimeType);
+            if (!string.IsNullOrEmpty(Encoding)) writer.WriteAttributeString("encoding", Encoding);
+            if (!string.IsNullOrEmpty(Schema)) writer.WriteAttributeString("schema", Schema);
 
             if (Data != null)
             {
