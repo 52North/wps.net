@@ -14,7 +14,6 @@ using Wps.Client.Models.Ows;
 using Wps.Client.Models.Requests;
 using Wps.Client.Services;
 using Xunit;
-using Xunit.Sdk;
 
 namespace Wps.Client.Tests
 {
