@@ -34,13 +34,13 @@ namespace Wps.Client.Models.Execution
             var xmlSerializer = new XmlSerializationService();
 
             writer.WriteAttributeString("id", Identifier);
-            if (!string.IsNullOrEmpty(MimeType)) writer.WriteAttributeString("mimeType", MimeType);
-            if (!string.IsNullOrEmpty(Encoding)) writer.WriteAttributeString("encoding", Encoding);
-            if (!string.IsNullOrEmpty(Schema)) writer.WriteAttributeString("schema", Schema);
 
             if (Data != null)
             {
                 writer.WriteStartElement("wps", "Data", ModelNamespaces.Wps);
+                if (!string.IsNullOrEmpty(MimeType)) writer.WriteAttributeString("mimeType", MimeType);
+                if (!string.IsNullOrEmpty(Encoding)) writer.WriteAttributeString("encoding", Encoding);
+                if (!string.IsNullOrEmpty(Schema)) writer.WriteAttributeString("schema", Schema);
                 writer.WriteRaw(xmlSerializer.Serialize(Data, true));
                 writer.WriteEndElement();
             }
