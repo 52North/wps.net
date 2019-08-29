@@ -6,9 +6,16 @@ using Wps.Client.Utils;
 
 namespace Wps.Client.Models.Execution
 {
+    /// <summary>
+    /// The data input model used for the execution requests. If the data is of type <see cref="string"/> it will be copied inside the data tags as is with no further serialization.
+    /// </summary>
     [XmlRoot("Input", Namespace = ModelNamespaces.Wps)]
     public class DataInput : IXmlSerializable
     {
+
+        public string MimeType { get; set; }
+        public string Encoding { get; set; }
+        public string Schema { get; set; }
 
         public string Identifier { get; set; }
         public object Data { get; set; }
@@ -34,7 +41,17 @@ namespace Wps.Client.Models.Execution
             if (Data != null)
             {
                 writer.WriteStartElement("wps", "Data", ModelNamespaces.Wps);
-                writer.WriteRaw(xmlSerializer.Serialize(Data, true));
+                if (!string.IsNullOrEmpty(MimeType)) writer.WriteAttributeString("mimeType", MimeType);
+                if (!string.IsNullOrEmpty(Encoding)) writer.WriteAttributeString("encoding", Encoding);
+                if (!string.IsNullOrEmpty(Schema)) writer.WriteAttributeString("schema", Schema);
+                if (Data is string s)
+                {
+                    writer.WriteRaw(s);
+                }
+                else
+                {
+                    writer.WriteRaw(xmlSerializer.Serialize(Data, true));
+                }
                 writer.WriteEndElement();
             }
 
