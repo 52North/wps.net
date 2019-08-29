@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 using Wps.Client.Services;
@@ -47,7 +48,14 @@ namespace Wps.Client.Models
                     if (subtreeReader.LocalName.Equals("Data"))
                     {
                         var content = subtreeReader.ReadInnerXml();
-                        Data = serializer.Deserialize<TData>(content);
+                        if (typeof(TData) == typeof(string))
+                        {
+                            Data = (TData) Convert.ChangeType(content, typeof(string));
+                        }
+                        else
+                        {
+                            Data = serializer.Deserialize<TData>(content);
+                        }
                     }
 
                     if (subtreeReader.LocalName.Equals("Output"))

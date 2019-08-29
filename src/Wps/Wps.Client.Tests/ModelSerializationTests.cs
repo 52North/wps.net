@@ -137,7 +137,7 @@ namespace Wps.Client.Tests
         [Fact]
         public void SerializeDataInput_ValidInputGiven_ShouldPass()
         {
-            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><Input id=""test-id"" xmlns=""http://www.opengis.net/wps/2.0""><wps:Data xmlns:wps=""http://www.opengis.net/wps/2.0""><LiteralValue xmlns=""http://www.opengis.net/wps/2.0"">105</LiteralValue></wps:Data><wps:Reference xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xli:href=""test"" schema=""test-schema"" xmlns:wps=""http://www.opengis.net/wps/2.0"" /></Input>";
+            const string expectedXml = @"<?xml version=""1.0"" encoding=""utf-8""?><Input id=""test-id"" xmlns=""http://www.opengis.net/wps/2.0""><wps:Data mimeType=""test mime type"" encoding=""test encoding"" schema=""test schema"" xmlns:wps=""http://www.opengis.net/wps/2.0"">test string</wps:Data><wps:Reference xmlns:ows=""http://www.opengis.net/ows/2.0"" xmlns:xli=""http://www.w3.org/1999/xlink"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xli:href=""test"" schema=""test-schema"" xmlns:wps=""http://www.opengis.net/wps/2.0"" /></Input>";
 
             // Remove white spaces and new line characters for XML comparison.
             var trimmedExpectedXml = Regex.Replace(expectedXml, @"\s+", string.Empty);
@@ -150,10 +150,14 @@ namespace Wps.Client.Tests
                     Href = "test",
                     Schema = "test-schema"
                 },
-                Data = new LiteralDataValue
-                {
-                    Value = 105.ToString(CultureInfo.InvariantCulture)
-                }
+                //Data = new LiteralDataValue
+                //{
+                //    Value = 105.ToString(CultureInfo.InvariantCulture)
+                //},
+                Data = "test string",
+                MimeType = "test mime type",
+                Schema = "test schema",
+                Encoding = "test encoding"
             };
 
             var resultXml = _serializer.Serialize(dataInput);

@@ -1,7 +1,32 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Mihai Stan, Benjamin Pross</Authors>
+    <Company>52°North</Company>
+    <Product>WPS Library</Product>
+    <Description>This is a library that allows developers to speed up their development when working with WPS providers.</Description>
+    <RepositoryUrl>https://github.com/52North/wps.net</RepositoryUrl>
+    <PackageTags>wps library client</PackageTags>
+    <PackageProjectUrl>https://github.com/52North/wps.net</PackageProjectUrl>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageId>Wps.Net</PackageId>
+    <Version>1.0.3</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
